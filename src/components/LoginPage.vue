@@ -3,8 +3,6 @@
     <button @click="signIn">
       Start Game
     </button>
-    {{ getQuests }}
-    {{ getUser }}
   </div>
 </template>
 

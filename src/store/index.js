@@ -3,9 +3,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { collection, doc, getFirestore, onSnapshot } from 'firebase/firestore';
 export default createStore({
   state: {
-    user: {
-
-    },
+    user: null,
     quests: [],
   },
   getters: {
@@ -28,9 +26,7 @@ export default createStore({
         }
         onSnapshot(userDoc, snapshot => {
           const data = snapshot.data();
-          user.name = data.name;
-          user.role = data.role;
-          user.assignedQuestId = data.assignedQuestId;
+          user={...data}
           commit('setUser', user)
         })
       }).catch(err => {

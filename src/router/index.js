@@ -22,6 +22,17 @@ const routes = [
     name: 'QuestCenterId',
     component: () => import('../views/QuestMoreInfoView.vue')
   },
+  {
+    path: '/Attack',
+    name: 'Attack',
+    component: () => import('../views/AttackView.vue')
+  },
+  {
+    path: '/Attack/:id',
+    name: 'AttackId',
+    component: () => import('../views/AttackTeamView.vue')
+  },
+
 
 ]
 

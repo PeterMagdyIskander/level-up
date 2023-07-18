@@ -6,7 +6,7 @@
     </div>
 </template>
 <script>
-
+import router from '@/router'
 import { mapGetters, mapActions } from 'vuex';
 import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
 
@@ -41,7 +41,7 @@ export default {
             }
         },
         decline() {
-
+            router.push(`/QuestCenter`)
         }
     }
 }
