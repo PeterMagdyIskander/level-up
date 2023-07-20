@@ -39,6 +39,4 @@ export default {
     height: 100%;
 }
 
-.team-container {
-}
 </style>
