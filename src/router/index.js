@@ -37,6 +37,11 @@ const routes = [
     name: 'Defend',
     component: () => import('../views/DealPointsView.vue')
   },
+  {
+    path: '/Attendance',
+    name: 'Attendance',
+    component: () => import('../views/AttendanceView.vue')
+  },
 
 
 ]
