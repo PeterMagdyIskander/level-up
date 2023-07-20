@@ -62,7 +62,7 @@ export default {
                         myDmg = (myDmg - block) * -1;
                         block *= -1;
                     } else if (myDmg < block) {
-                        block = (myDmg - block) * -1;
+                        block = myDmg * -1;
                         myDmg = 0;
                     } else {
                         block = myDmg * -1
