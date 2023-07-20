@@ -1,5 +1,5 @@
 <template>
-    <div class="skill-container" @click="dealDmg">
+    <div class="skill-container" @click="dealPoints">
         <h1>{{ skillImg }}</h1>
         <h6>{{ skillName }}</h6>
     </div>
@@ -16,14 +16,14 @@ export default {
             type: String,
             required: true,
         },
-        skillDmg: {
+        skillPoints: {
             type: Number,
             required: true,
         }
     },
     methods: {
-        dealDmg() {
-            this.$emit('dealDmg',this.skillDmg)
+        dealPoints() {
+            this.$emit('dealPoints',this.skillPoints)
         }
     }
 }
@@ -38,6 +38,12 @@ export default {
     justify-content: center;
     border: 2px solid #f4ee80;
     box-shadow: 2px 2px #a14759;
+    h6{
+        color: #f4ee80;
+        font-size: 1rem;
+        text-shadow: 0 2px #a14759;
+        font-family: 'pressstart2p';
+    }
 
 }
 </style>

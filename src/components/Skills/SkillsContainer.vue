@@ -1,12 +1,13 @@
 <template>
     <div class="skills-container">
         <skill-container v-for="skill in skills" :key="skill.name" :skillImg="skill.img" :skillName="skill.name"
-            :skillDmg="skill.attackDamage" @dealDmg="dealDmg">
+            :skillPoints="skill.points" @dealPoints="dealPoints">
         </skill-container>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import skillContainer from './skillContainer.vue';
 export default {
     name: "skills",
@@ -15,28 +16,75 @@ export default {
     },
     data() {
         return {
-            skills: [
+            attackerSkills: [
                 {
                     img: "🗡",
                     name: "edrab",
-                    attackDamage: 10,
+                    points: 10,
                 },
                 {
                     img: "💣",
                     name: "kompela",
-                    attackDamage: 10,
+                    points: 10,
                 },
                 {
                     img: "⚔️",
                     name: "edrab/ni",
-                    attackDamage: 10,
+                    points: 10,
                 },
-            ]
+            ],
+            defenderSkills: [
+                {
+                    img: "🔒",
+                    name: "sok 3aleh",
+                    points: 10,
+                },
+                {
+                    img: "🚫",
+                    name: "stop",
+                    points: 10,
+                },
+                {
+                    img: "🛡",
+                    name: "bara yad",
+                    points: 10,
+                },
+            ],
+            healerSkills: [
+                {
+                    img: "🩹",
+                    name: "sticker",
+                    points: 10,
+                },
+                {
+                    img: "💊",
+                    name: "lebosa",
+                    points: 10,
+                },
+                {
+                    img: "🩺",
+                    name: "alloo?",
+                    points: 10,
+                },
+            ],
+        }
+    },
+    computed: {
+        ...mapGetters(['getUser']),
+        skills() {
+            switch (this.getUser.role) {
+                case "ATTACKER":
+                    return this.attackerSkills;
+                case "DEFENDER":
+                    return this.defenderSkills;
+                case "HEALER":
+                    return this.healerSkills;
+            }
         }
     },
     methods: {
-        dealDmg(dmg) {
-            this.$emit('dealDmg', dmg)
+        dealPoints(points) {
+            this.$emit('dealPoints', points)
         }
     }
 }
@@ -44,7 +92,6 @@ export default {
 
 <style lang="scss">
 .skills-container {
-    margin-top: 120%;
     height: 125px;
     display: flex;
     justify-content: center;

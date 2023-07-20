@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/ChooseYourHero">Choose your hero</router-link> |
     <router-link to="/QuestCenter">Quest Center</router-link> |
-    <router-link to="/Attack">Attack</router-link>
+    <router-link to="/Attack">Attack</router-link> |
+    <router-link to="/Defend">Defend</router-link>
   </nav>
   <router-view />
 </template>

@@ -30,7 +30,12 @@ const routes = [
   {
     path: '/Attack/:id',
     name: 'AttackId',
-    component: () => import('../views/AttackTeamView.vue')
+    component: () => import('../views/DealPointsView.vue')
+  },
+  {
+    path: '/Defend',
+    name: 'Defend',
+    component: () => import('../views/DealPointsView.vue')
   },
 
 

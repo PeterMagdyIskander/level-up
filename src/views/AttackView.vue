@@ -25,8 +25,7 @@ export default {
         const teamCollectionReference = collection(firestore, 'teams');
         onSnapshot(teamCollectionReference, snapshot => {
             const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-            this.allOtherTeams = [...data.filter(team => team.id != this.getUser.team)]
-            console.log(this.allOtherTeams)
+            this.allOtherTeams = [...data.filter(team => team.id != this.getUser.teamId)]
         })
     }, methods: {
         attackTeam(team) {
