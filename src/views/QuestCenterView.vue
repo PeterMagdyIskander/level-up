@@ -23,11 +23,11 @@ export default {
     methods: {
         show(role) {
             this.showingRole = role;
-            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "")
+            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === ""&&quest.status==="OPEN")
         }
     },
     created() {
-        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "")
+        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === ""&&quest.status==="OPEN")
     }
 }
 </script> 

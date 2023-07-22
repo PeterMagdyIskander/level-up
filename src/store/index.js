@@ -21,12 +21,11 @@ export default createStore({
         const firestore = getFirestore();
         const userCollectionReference = collection(firestore, 'users');
         const userDoc = doc(userCollectionReference, res.user.uid)
-        let user = {
-          uid: res.user.uid
-        }
         onSnapshot(userDoc, snapshot => {
           const data = snapshot.data();
-          user={...data}
+          let user={
+            uid: res.user.uid
+            ,...data}
           commit('setUser', user)
         })
       }).catch(err => {

@@ -1,6 +1,7 @@
 <template>
     <div>
         {{ quest }}
+        {{ getUser }}
         <button @click="accept">Start Quest</button>
         <button @click="decline">X</button>
     </div>
@@ -36,7 +37,7 @@ export default {
                 let updatedUser = this.getUser;
                 updatedUser.assignedQuestId = this.$route.params.id;
                 this.updateUser(updatedUser);
-                updateDoc(questDoc, { assignedTo: this.$route.params.id })
+                updateDoc(questDoc, { assignedTo: this.getUser.uid,status:"STARTED" })
 
             }
         },

@@ -5,7 +5,8 @@
     <router-link to="/QuestCenter">Quest Center</router-link> |
     <router-link to="/Attack">Attack</router-link> |
     <router-link to="/Defend">Defend</router-link> |
-    <router-link to="/Attendance">Attendance</router-link>
+    <router-link to="/Attendance">Attendance</router-link> |
+    <router-link to="/MyQuest">My Quest</router-link>
   </nav>
   <router-view />
 </template>
