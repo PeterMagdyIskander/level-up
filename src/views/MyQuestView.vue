@@ -17,12 +17,12 @@ export default {
     data() {
         return {
             quest: {},
-          
+
             password: ""
         }
     },
     created() {
-        this.quest = this.getQuests.filter(quest => quest.id === this.getUser.assignedQuestId);
+        this.quest = this.getQuests.filter(quest => quest.id === this.getUser.assignedQuestId)[0];
     },
     methods: {
         ...mapActions(['updateUser']),
@@ -32,7 +32,11 @@ export default {
             const questCollectionReference = collection(firestore, 'quests');
             const userDoc = doc(userCollectionReference, this.getUser.uid)
             const questDoc = doc(questCollectionReference, this.getUser.assignedQuestId)
-            updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest[0].exp), gold: increment(this.quest[0].gold) })
+            if (this.getUser.role === this.quest.role) {
+                updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
+            } else {
+                updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
+            }
             let updatedUser = this.getUser;
             updatedUser.assignedQuestId = "";
             this.updateUser(updatedUser);
