@@ -84,7 +84,7 @@ body {
       display: block;
       width: 50px;
       height: 50px;
-      background: grey;
+      background: transparent;
       border: none;
       position: relative;
       z-index: 100;
@@ -153,8 +153,10 @@ body {
         transition: .4s ease;
 
         &:hover {
-          background: lightgrey;
-          color: dimgrey;
+          font-family: 'pressstart2p';
+          color: #f4ee80;
+          font-size: 1.5rem;
+          text-shadow: 0 5px #a14759;
         }
       }
     }
@@ -175,4 +177,5 @@ body {
 .translateX-leave-to {
   transform: translateX(-200px);
   opacity: 0;
-}</style>
+}
+</style>
