@@ -19,3 +19,8 @@ export default {
   computed: mapGetters(['getUser']),
 }
 </script>
+<style lang="scss" scoped>
+.home{
+  height: 100%;
+}
+</style>

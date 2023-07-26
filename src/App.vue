@@ -1,14 +1,5 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/ChooseYourHero">Choose your hero</router-link>
-    <router-link to="/QuestCenter">Quest Center</router-link>
-    <router-link to="/Attack">Attack</router-link>
-    <router-link to="/Defend">Defend</router-link>
-    <router-link to="/Attendance">Attendance</router-link>
-    <router-link to="/MyQuest">My Quest</router-link>
-  </nav> -->
-  <div id="sidemenu">
+  <!-- <div id="sidemenu">
     <button class="sidemenu__btn" v-on:click="navOpen = !navOpen" v-bind:class="{ active: navOpen }">
       <span class="top"></span>
       <span class="mid"></span>
@@ -18,18 +9,19 @@
       <nav v-show="navOpen">
         <div class="sidemenu__wrapper">
           <ul class="sidemenu__list">
-            <li class="sidemenu__item"><router-link to="/">Home</router-link></li>
-            <li class="sidemenu__item"> <router-link to="/ChooseYourHero">Choose your hero</router-link></li>
-            <li class="sidemenu__item"><router-link to="/QuestCenter">Quest Center</router-link></li>
-            <li class="sidemenu__item"> <router-link to="/Attack">Attack</router-link></li>
-            <li class="sidemenu__item"><router-link to="/Defend">Defend</router-link></li>
-            <li class="sidemenu__item"><router-link to="/Attendance">Attendance</router-link></li>
-            <li class="sidemenu__item"><router-link to="/MyQuest">My Quest</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/">Home</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/ChooseYourHero">Choose your hero</router-link>
+            </li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Attack">Attack</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Defend">Defend</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Attendance">Attendance</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
           </ul>
         </div>
       </nav>
     </transition>
-  </div>
+  </div> -->
 
   <router-view />
 </template>
@@ -42,6 +34,10 @@ export default {
     return {
       navOpen: false,
     }
+  }, methods: {
+    closeMenu() {
+      this.navOpen = false;
+    }
   }
 }
 </script>
@@ -53,15 +49,16 @@ body {
   background-size: 2em 2em;
   background-color: #17182d !important;
   text-align: center;
-
+  
   >* {
-
+    
     color: #FFF;
   }
 }
 
 #app {
   padding: 15px;
+  height: 100%;
 }
 
 #sidemenu {
