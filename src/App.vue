@@ -1,5 +1,5 @@
 <template>
-  <!-- <div id="sidemenu">
+  <div id="sidemenu">
     <button class="sidemenu__btn" v-on:click="navOpen = !navOpen" v-bind:class="{ active: navOpen }">
       <span class="top"></span>
       <span class="mid"></span>
@@ -21,7 +21,7 @@
         </div>
       </nav>
     </transition>
-  </div> -->
+  </div>
 
   <router-view />
 </template>
