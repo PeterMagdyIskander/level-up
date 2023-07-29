@@ -1,9 +1,14 @@
 <template>
     <div>
-        <button @click="show('ATTACKER')" :class="{ active: showingRole === 'ATTACKER' }">ATTACKER</button>
-        <button @click="show('DEFENDER')" :class="{ active: showingRole === 'DEFENDER' }">DEFENDER</button>
-        <button @click="show('HEALER')" :class="{ active: showingRole === 'HEALER' }">HEALER</button>
-        <quest-card v-for="quest in questList" :key="quest.id" :title="quest.title" :id="quest.id"></quest-card>
+        <div class="header-container">
+            <p class="logo">Level Up</p>
+            <p class="title">Quest Center</p>
+        </div>
+        <button @click="show('ATTACKER')" :class="{ active: showingRole === 'ATTACKER' }">Attacker</button>
+        <button @click="show('DEFENDER')" :class="{ active: showingRole === 'DEFENDER' }">Defender</button>
+        <button @click="show('HEALER')" :class="{ active: showingRole === 'HEALER' }">Healer</button>
+        <quest-card v-for="quest in questList" :key="quest.id" :title="quest.title" :id="quest.id"
+            :difficulty="quest.difficulty"></quest-card>
     </div>
 </template>
 <script>
@@ -23,16 +28,49 @@ export default {
     methods: {
         show(role) {
             this.showingRole = role;
-            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === ""&&quest.status==="OPEN")
+            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "" && quest.status === "OPEN")
         }
     },
     created() {
-        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === ""&&quest.status==="OPEN")
+        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "" && quest.status === "OPEN")
     }
 }
 </script> 
 <style lang="scss" scoped>
-.active {
-    color: red;
+p {
+    padding: 0;
+    margin: 0;
 }
-</style>
+
+.header-container {
+    width: 100%;
+    height: 150px;
+    background-color: #162041;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+
+    & .logo {
+        font-family: 'pressstart2p';
+        color: #f4ee80;
+        text-shadow: 1px 2px #a14759;
+        font-size: 14px;
+    }
+    & .title{
+        font-family: 'pressstart2p';
+        font-size: 18px;
+        
+    }
+}
+button{
+    all: unset;
+    width: 80px;
+    background-color: #444a5c;
+    padding: 10px;
+    font-family: 'cygre';
+}
+.active {
+    background-color: #162041;
+}</style>

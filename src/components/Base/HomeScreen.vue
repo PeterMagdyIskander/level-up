@@ -54,7 +54,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .home-container{
     padding: 10px 0;
     height: 100%;

@@ -48,7 +48,6 @@ body {
   background-image: linear-gradient(#252a52 .1em, transparent .1em), linear-gradient(90deg, #252a52 .1em, transparent .1em);
   background-size: 2em 2em;
   background-color: #17182d !important;
-  text-align: center;
   
   >* {
     
@@ -57,8 +56,8 @@ body {
 }
 
 #app {
-  padding: 15px;
   height: 100%;
+  position: relative;
 }
 
 #sidemenu {
@@ -68,7 +67,7 @@ body {
     background-image: linear-gradient(#252a52 .1em, transparent .1em), linear-gradient(90deg, #252a52 .1em, transparent .1em);
     background-size: 2em 2em;
     background-color: #17182d !important;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     z-index: 99;
@@ -83,7 +82,9 @@ body {
       height: 50px;
       background: transparent;
       border: none;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       z-index: 100;
       appearance: none;
       cursor: pointer;

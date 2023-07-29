@@ -1,7 +1,16 @@
 <template>
     <div class="card-container" @click="reroute">
-        <img src="@/assets/arrow-right.svg" alt="arrow pointing right">
-        <p>{{ title }}</p>
+        <!-- <img src="@/assets/arrow-right.svg" alt="arrow pointing right">
+        <p>{{ title }}</p> -->
+        <div class="title">
+            <img src="@/assets/quest-dot.svg" alt="quest dot">
+            <p>{{ title }}</p>
+        </div>
+        <div class="difficulty">
+            <img v-if="difficulty == 1" src="@/assets/easy.svg" alt="easy">
+            <img v-if="difficulty == 2" src="@/assets/medium.svg" alt="medium">
+            <img v-if="difficulty == 3" src="@/assets/hard.svg" alt="hard">
+        </div>
     </div>
 </template>
 
@@ -16,6 +25,10 @@ export default {
         },
         title: {
             type: String,
+            required: true,
+        },
+        difficulty: {
+            type: Number,
             required: true,
         }
     },
@@ -34,14 +47,40 @@ p {
 }
 
 .card-container {
-    width: 80%;
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 10px;
-    height:30px;
+    height: 62px;
     cursor: pointer;
-    img{
-        width: 18px;
+    background-color: #162041;
+    margin: 18px 0;
+
+    & .title {
+        width: 77%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+
+        p {
+            font-family: 'cygre';
+            color: #E5E5E5;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        img {
+            width: 18px;
+            height: 18px;
+            margin: 0 18px;
+        }
+    }
+
+    & .difficulty {
+        width: 23%;
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
 }
 </style>
