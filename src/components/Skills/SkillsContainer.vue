@@ -1,7 +1,7 @@
 <template>
     <div class="skills-container">
         <skill-container v-for="skill in skills" :key="skill.name" :skillImg="skill.img" :skillName="skill.name"
-            :skillPoints="skill.points" @dealPoints="dealPoints">
+            :skillPoints="skill.points" @dealPoints="dealPoints" :active="getUser.level>=skill.neededLevel">
         </skill-container>
     </div>
 </template>
@@ -21,16 +21,19 @@ export default {
                     img: "🗡",
                     name: "edrab",
                     points: 10,
+                    neededLevel:1
                 },
                 {
                     img: "💣",
                     name: "kompela",
                     points: 10,
+                    neededLevel:3
                 },
                 {
                     img: "⚔️",
                     name: "edrab/ni",
                     points: 10,
+                    neededLevel:5
                 },
             ],
             defenderSkills: [
@@ -38,16 +41,19 @@ export default {
                     img: "🔒",
                     name: "sok 3aleh",
                     points: 10,
+                    neededLevel:1
                 },
                 {
                     img: "🚫",
                     name: "stop",
                     points: 10,
+                    neededLevel:3
                 },
                 {
                     img: "🛡",
                     name: "bara yad",
                     points: 10,
+                    neededLevel:5
                 },
             ],
             healerSkills: [
@@ -55,16 +61,19 @@ export default {
                     img: "🩹",
                     name: "sticker",
                     points: 10,
+                    neededLevel:1
                 },
                 {
                     img: "💊",
                     name: "lebosa",
                     points: 10,
+                    neededLevel:3
                 },
                 {
                     img: "🩺",
                     name: "alloo?",
                     points: 10,
+                    neededLevel:5
                 },
             ],
         }

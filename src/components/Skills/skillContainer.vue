@@ -19,11 +19,17 @@ export default {
         skillPoints: {
             type: Number,
             required: true,
+        },
+        active: {
+            type: Boolean,
+            required: true,
         }
     },
     methods: {
         dealPoints() {
-            this.$emit('dealPoints',this.skillPoints)
+            if(this.active){
+                this.$emit('dealPoints',this.skillPoints)
+            }
         }
     }
 }
@@ -33,6 +39,7 @@ export default {
     width: 100px;
     height: 100px;
     display: flex;
+    cursor:pointer;
     flex-direction: column;
     align-items: center;
     justify-content: center;
