@@ -1,18 +1,23 @@
 <template>
     <div>
-        {{ quest }}
-        {{ getUser }}
-        <button @click="accept">Start Quest</button>
-        <button @click="decline">X</button>
+        <QuestMoreInfo :title="'Quest Info'" :quest="quest[0]"></QuestMoreInfo>
+
+        <div class="button-container">
+            <button @click="accept">START</button>
+            <button @click="decline">REJECT</button>
+        </div>
     </div>
 </template>
 <script>
 import router from '@/router'
 import { mapGetters, mapActions } from 'vuex';
 import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
-
+import QuestMoreInfo from '@/components/Quest/QuestMoreInfo.vue';
 export default {
     name: "quest-more-info-view",
+    components: {
+        QuestMoreInfo
+    },
     data() {
         return {
             quest: {
@@ -37,7 +42,7 @@ export default {
                 let updatedUser = this.getUser;
                 updatedUser.assignedQuestId = this.$route.params.id;
                 this.updateUser(updatedUser);
-                updateDoc(questDoc, { assignedTo: this.getUser.uid,status:"STARTED" })
+                updateDoc(questDoc, { assignedTo: this.getUser.uid, status: "STARTED" })
 
             }
         },
@@ -47,3 +52,24 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+.button-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+    margin-top: 50px;
+
+    button {
+        width: 150px;
+        padding: 15px;
+        background-color: #3E8898;
+        border-radius: 6px;
+        border: 1px solid #E5E5E5;
+        color: #E5E5E5;
+        font-size: 1.2rem;
+        font-family: 'pressstart2p';
+    }
+}
+</style>

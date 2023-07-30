@@ -48,44 +48,61 @@ export default {
         }
     },
     methods: {
+        addHours(date, hours) {
+            date.setHours(date.getHours() + hours);
+
+            return date;
+        },
         dealPoints(points) {
             const firestore = getFirestore();
             const teamCollectionReference = collection(firestore, 'teams');
             const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
-            switch (this.getUser.role) {
-                case "ATTACKER":
-                    const enemyTeamDoc = doc(teamCollectionReference, this.$route.params.id)
-                    let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
-                    let block = this.enemyTeamData.dmgBlock;
+            const userCollectionReference = collection(firestore, 'users');
+            const userDoc = doc(userCollectionReference, this.getUser.uid)
 
-                    if (myDmg > block) {
-                        myDmg = (myDmg - block) * -1;
-                        block *= -1;
-                    } else if (myDmg < block) {
-                        block = myDmg * -1;
-                        myDmg = 0;
-                    } else {
-                        block = myDmg * -1
-                        myDmg = 0;
-                    }
-                    updateDoc(enemyTeamDoc, {
-                        health: increment(myDmg),
-                        dmgBlock: increment(block)
-                    })
-                    break;
-                case "HEALER":
-                    updateDoc(myTeamDoc, {
-                        health: increment(points)
-                    })
-                    break;
-                case "DEFENDER":
-                    updateDoc(myTeamDoc, {
-                        dmgBlock: increment(points)
-                    })
-                    break;
+            let dateNow = new Date();
+            let userTimeStamp = this.getUser.timeStamp;
+            if (userTimeStamp == null)
+                userTimeStamp = new Date();
+            if (dateNow >= this.addHours(new Date(userTimeStamp),1)) {
+                switch (this.getUser.role) {
+                    case "ATTACKER":
+                        const enemyTeamDoc = doc(teamCollectionReference, this.$route.params.id)
+                        let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
+                        let block = this.enemyTeamData.dmgBlock;
+
+                        if (myDmg > block) {
+                            myDmg = (myDmg - block) * -1;
+                            block *= -1;
+                        } else if (myDmg < block) {
+                            block = myDmg * -1;
+                            myDmg = 0;
+                        } else {
+                            block = myDmg * -1
+                            myDmg = 0;
+                        }
+                        updateDoc(enemyTeamDoc, {
+                            health: increment(myDmg),
+                            dmgBlock: increment(block),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "HEALER":
+                        updateDoc(myTeamDoc, {
+                            health: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "DEFENDER":
+                        updateDoc(myTeamDoc, {
+                            dmgBlock: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                }
+            } else {
+                alert("not yet")
             }
-
-
         }
     }
 }

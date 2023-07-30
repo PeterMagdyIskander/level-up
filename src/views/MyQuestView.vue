@@ -1,6 +1,6 @@
 <template>
     <div>
-        {{ quest }}
+       <QuestMoreInfo :title="'My Quest'" :quest="quest"></QuestMoreInfo>
         <input type="password" v-model="password">
         <button @click="submit">Submit Quest</button>
     </div>
@@ -11,9 +11,13 @@
 import { mapGetters, mapActions } from 'vuex';
 import { collection, doc, getFirestore, updateDoc, increment } from 'firebase/firestore';
 import router from '@/router';
+import QuestMoreInfo from '@/components/Quest/QuestMoreInfo.vue';
 export default {
     name: "my-quest",
     computed: mapGetters(['getUser', 'getQuests']),
+    components:{
+        QuestMoreInfo
+    },
     data() {
         return {
             quest: {},
