@@ -11,19 +11,25 @@
             <p class="title">{{ quest.title }}</p>
             <p class="sub-title">Task: {{ quest.description }}</p>
             <div class="more-info">
-                <p>Difficulty</p>
+                <div><img src="@/assets/exp-icon.svg" alt="exp icon">
+                </div>
                 <p>{{ quest.difficulty }}</p>
             </div>
             <div class="more-info">
-                <p>Gold</p>
+                <div> <img src="@/assets/gold-icon.svg" alt="exp icon">
+                </div>
                 <p>{{ quest.gold }}</p>
             </div>
             <div class="more-info">
-                <p>EXP</p>
+                <div>
+                    <p>EXP</p>
+                </div>
                 <p>{{ quest.exp }}</p>
             </div>
             <div class="more-info">
-                <p>Role</p>
+                <div>
+                    <p>Role</p>
+                </div>
                 <p>{{ quest.role }}</p>
             </div>
         </div>
@@ -59,6 +65,7 @@ p {
     align-items: center;
     row-gap: 26px;
     text-align: center;
+
     &-details {
         width: 100%;
         background-color: #162041;
@@ -93,18 +100,24 @@ p {
 }
 
 .more-info {
-    width: 100%;
     display: flex;
     column-gap: 30px;
-    margin: 7px 0;
+    margin: 7px auto;
+
+    div {
+        width: 102px;
+        text-align: center;
+    }
+
     & p:nth-child(1) {
-        width: 162px;
         font-family: 'pressstart2p';
         font-size: 18px;
         color: #F09455;
-        text-align: center;
     }
+
     & p:nth-child(2) {
+        width: 90px;
+        text-align: left;
         font-family: 'ptmono';
         font-size: 18px;
     }

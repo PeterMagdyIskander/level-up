@@ -1,8 +1,13 @@
 <template>
     <div>
-       <QuestMoreInfo :title="'My Quest'" :quest="quest"></QuestMoreInfo>
-        <input type="password" v-model="password">
-        <button @click="submit">Submit Quest</button>
+        <QuestMoreInfo :title="'My Quest'" :quest="quest"></QuestMoreInfo>
+
+
+        <div class="button-container">
+            <input type="password" v-model="password">
+            <button @click="submit">SUBMIT</button>
+        </div>
+
     </div>
 </template>
 
@@ -15,7 +20,7 @@ import QuestMoreInfo from '@/components/Quest/QuestMoreInfo.vue';
 export default {
     name: "my-quest",
     computed: mapGetters(['getUser', 'getQuests']),
-    components:{
+    components: {
         QuestMoreInfo
     },
     data() {
@@ -51,3 +56,33 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.button-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 25px;
+    margin-top: 50px;
+
+    input {
+        width: 271px;
+        height: 40px;
+        border: 2px solid #3E8898;
+        border-radius: 6px;
+    }
+
+    button {
+        width: 170px;
+        padding: 10px;
+        background-color: #3E8898;
+        border-radius: 6px;
+        border: 1px solid #E5E5E5;
+        color: #E5E5E5;
+        font-size: 1.2rem;
+        font-family: 'pressstart2p';
+    }
+}
+</style>
