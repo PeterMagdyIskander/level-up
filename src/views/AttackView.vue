@@ -4,10 +4,18 @@
         <div class="team-container" v-for="team in allOtherTeams" :key="team.id" @click="attackTeam(team.id)">
             <h1>{{ team }}</h1>
         </div> -->
-        <div id="NW"></div>
-        <div id="NE"></div>
-        <div id="SW"></div>
-        <div id="SE"></div>
+        <div id="NW">
+            <BaseContainer :teamId="'Astro'" :selected="true"></BaseContainer>
+        </div>
+        <div id="NE">
+            <BaseContainer :teamId="'Kalos'" :selected="false"></BaseContainer>
+        </div>
+        <div id="SW">
+            <BaseContainer :teamId="'Lumos'" :selected="false"></BaseContainer>
+        </div>
+        <div id="SE">
+            <BaseContainer :teamId="'Dynamis'" :selected="false"></BaseContainer>
+        </div>
     </div>
 </template>
 
@@ -15,10 +23,13 @@
 import { mapGetters } from 'vuex';
 import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
 import router from '@/router';
-
+import BaseContainer from '@/components/Base/BaseContainer.vue';
 export default {
     name: "attack-view",
     computed: mapGetters(['getUser']),
+    components: {
+        BaseContainer
+    },
     data() {
         return {
             allOtherTeams: [],
@@ -46,33 +57,49 @@ export default {
 #NW {
     position: fixed;
     width: 50%;
-    height: 30%;
+    height: 40%;
     top: 0;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 #NE {
     position: fixed;
     width: 50%;
-    height: 30%;
+    height: 40%;
     top: 0;
     left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 #SW {
     position: fixed;
     width: 50%;
-    height: 30%;
-    top: 30%;
+    height: 40%;
+    top: 40%;
     left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
 }
 
 #SE {
     position: fixed;
     width: 50%;
-    height: 30%;
-    top: 30%;
+    height: 40%;
+    top: 40%;
     left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
 }
 
 #SE,
@@ -83,4 +110,5 @@ export default {
 #NE,
 #SE {
     border-left: 1px solid #3E8898;
-}</style>
+}
+</style>
