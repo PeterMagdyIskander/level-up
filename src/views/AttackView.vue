@@ -1,9 +1,13 @@
 <template>
     <div class="container">
-        {{ getUser }}
+        <!-- {{ getUser }}
         <div class="team-container" v-for="team in allOtherTeams" :key="team.id" @click="attackTeam(team.id)">
             <h1>{{ team }}</h1>
-        </div>
+        </div> -->
+        <div id="NW"></div>
+        <div id="NE"></div>
+        <div id="SW"></div>
+        <div id="SE"></div>
     </div>
 </template>
 
@@ -39,4 +43,44 @@ export default {
     height: 100%;
 }
 
-</style>
+#NW {
+    position: fixed;
+    width: 50%;
+    height: 30%;
+    top: 0;
+    left: 0;
+}
+
+#NE {
+    position: fixed;
+    width: 50%;
+    height: 30%;
+    top: 0;
+    left: 50%;
+}
+
+#SW {
+    position: fixed;
+    width: 50%;
+    height: 30%;
+    top: 30%;
+    left: 0;
+}
+
+#SE {
+    position: fixed;
+    width: 50%;
+    height: 30%;
+    top: 30%;
+    left: 50%;
+}
+
+#SE,
+#SW {
+    border-top: 1px solid #3E8898;
+}
+
+#NE,
+#SE {
+    border-left: 1px solid #3E8898;
+}</style>
