@@ -27,13 +27,13 @@ export default {
                     img: "💣",
                     name: "kompela",
                     points: 10,
-                    neededLevel:3
+                    neededLevel:1
                 },
                 {
                     img: "⚔️",
                     name: "edrab/ni",
                     points: 10,
-                    neededLevel:5
+                    neededLevel:1
                 },
             ],
             defenderSkills: [
@@ -106,5 +106,7 @@ export default {
     justify-content: center;
     align-items: center;
     column-gap: 10px;
+    position: absolute;
+    bottom: 0;
 }
 </style>

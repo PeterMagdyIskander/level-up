@@ -4,35 +4,60 @@
         <div class="team-container" v-for="team in allOtherTeams" :key="team.id" @click="attackTeam(team.id)">
             <h1>{{ team }}</h1>
         </div> -->
-        <div id="NW">
-            <BaseContainer :teamId="'Astro'" :selected="true"></BaseContainer>
+        <div id="NW" @click="selectedTeamId = 'Astro'">
+            <BaseContainer :teamId="'Astro'" :selected="selectedTeamId === 'Astro'"></BaseContainer>
         </div>
-        <div id="NE">
-            <BaseContainer :teamId="'Kalos'" :selected="false"></BaseContainer>
+        <div id="NE" @click="selectedTeamId = 'Kalos'">
+            <BaseContainer :teamId="'Kalos'" :selected="selectedTeamId === 'Kalos'"></BaseContainer>
         </div>
-        <div id="SW">
-            <BaseContainer :teamId="'Lumos'" :selected="false"></BaseContainer>
+        <div id="SW" @click="selectedTeamId = 'Lumos'">
+            <BaseContainer :teamId="'Lumos'" :selected="selectedTeamId === 'Lumos'"></BaseContainer>
         </div>
-        <div id="SE">
-            <BaseContainer :teamId="'Dynamis'" :selected="false"></BaseContainer>
+        <div id="SE" @click="selectedTeamId = 'Dynamis'">
+            <BaseContainer :teamId="'Dynamis'" :selected="selectedTeamId === 'Dynamis'"></BaseContainer>
         </div>
+        <skills @dealPoints="dealPoints"></skills>
     </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
-import router from '@/router';
+import { collection, getFirestore, onSnapshot,doc,updateDoc,increment } from 'firebase/firestore';
 import BaseContainer from '@/components/Base/BaseContainer.vue';
+import skills from '@/components/Skills/SkillsContainer.vue';
+
 export default {
     name: "attack-view",
     computed: mapGetters(['getUser']),
     components: {
-        BaseContainer
+        BaseContainer,
+        skills,
     },
     data() {
         return {
             allOtherTeams: [],
+            enemyTeamData: {},
+            myTeamData: {},
+            isAttacker: true,
+            selectedTeamId: "Astro"
+        }
+    },
+    created() {
+        this.isAttacker = this.getUser.role === "ATTACKER";
+        const firestore = getFirestore();
+        const teamCollectionReference = collection(firestore, 'teams');
+        switch (this.getUser.role) {
+            case "ATTACKER":
+                const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
+                onSnapshot(enemyTeamDoc, snapshot => {
+                    this.enemyTeamData = { ...snapshot.data() };
+                })
+            default:
+                const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
+                onSnapshot(myTeamDoc, snapshot => {
+                    this.myTeamData = { ...snapshot.data() };
+                })
+                break;
         }
     },
     mounted() {
@@ -43,8 +68,61 @@ export default {
             this.allOtherTeams = [...data.filter(team => team.id != this.getUser.teamId)]
         })
     }, methods: {
-        attackTeam(team) {
-            router.push(`/Attack/${team}`)
+        addHours(date, hours) {
+            date.setHours(date.getHours() + hours);
+
+            return date;
+        },
+        dealPoints(points) {
+            const firestore = getFirestore();
+            const teamCollectionReference = collection(firestore, 'teams');
+            const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
+            const userCollectionReference = collection(firestore, 'users');
+            const userDoc = doc(userCollectionReference, this.getUser.uid)
+
+            let dateNow = new Date();
+            let userTimeStamp = this.getUser.timeStamp;
+            if (userTimeStamp == null)
+                userTimeStamp = new Date();
+            if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
+                switch (this.getUser.role) {
+                    case "ATTACKER":
+                        const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
+                        let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
+                        let block = this.enemyTeamData.dmgBlock;
+
+                        if (myDmg > block) {
+                            myDmg = (myDmg - block) * -1;
+                            block *= -1;
+                        } else if (myDmg < block) {
+                            block = myDmg * -1;
+                            myDmg = 0;
+                        } else {
+                            block = myDmg * -1
+                            myDmg = 0;
+                        }
+                        updateDoc(enemyTeamDoc, {
+                            health: increment(myDmg),
+                            dmgBlock: increment(block),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "HEALER":
+                        updateDoc(myTeamDoc, {
+                            health: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "DEFENDER":
+                        updateDoc(myTeamDoc, {
+                            dmgBlock: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                }
+            } else {
+                alert("not yet")
+            }
         }
     }
 }
