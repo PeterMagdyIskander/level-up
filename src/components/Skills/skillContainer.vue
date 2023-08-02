@@ -1,6 +1,5 @@
 <template>
     <div class="skill-container" @click="dealPoints">
-        <h1>{{ skillImg }}</h1>
         <h6>{{ skillName }}</h6>
     </div>
 </template>
@@ -36,19 +35,20 @@ export default {
 </script>
 <style lang="scss" scoped>
 .skill-container {
-    width: 100px;
-    height: 100px;
-    display: flex;
+    padding: 12px 8px;
     cursor:pointer;
-    flex-direction: column;
-    align-items: center;
+    background-color: #3E8898;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0px 0px 6px #0000003B;
+    border-radius: 6px;
+    display: flex;
     justify-content: center;
-    border: 2px solid #f4ee80;
-    box-shadow: 2px 2px #a14759;
+    align-items: center;
     h6{
-        color: #f4ee80;
-        font-size: 1rem;
-        text-shadow: 0 2px #a14759;
+        padding: 0;
+        margin: 0;
+        color: #E5E5E5;
+        font-size: 11px;
         font-family: 'pressstart2p';
     }
 

@@ -1,7 +1,7 @@
 <template>
     <div class="skills-container">
         <skill-container v-for="skill in skills" :key="skill.name" :skillImg="skill.img" :skillName="skill.name"
-            :skillPoints="skill.points" @dealPoints="dealPoints" :active="getUser.level>=skill.neededLevel">
+            :skillPoints="skill.points" @dealPoints="dealPoints" :active="getUser.level >= skill.neededLevel">
         </skill-container>
     </div>
 </template>
@@ -16,80 +16,28 @@ export default {
     },
     data() {
         return {
-            attackerSkills: [
+            skills: [
                 {
-                    img: "🗡",
-                    name: "edrab",
+
+                    name: "Skill 1",
                     points: 10,
-                    neededLevel:1
+                    neededLevel: 1
                 },
                 {
-                    img: "💣",
-                    name: "kompela",
+                    name: "Skill 2",
                     points: 10,
-                    neededLevel:1
+                    neededLevel: 1
                 },
                 {
-                    img: "⚔️",
-                    name: "edrab/ni",
+                    name: "Skill 3",
                     points: 10,
-                    neededLevel:1
-                },
-            ],
-            defenderSkills: [
-                {
-                    img: "🔒",
-                    name: "sok 3aleh",
-                    points: 10,
-                    neededLevel:1
-                },
-                {
-                    img: "🚫",
-                    name: "stop",
-                    points: 10,
-                    neededLevel:3
-                },
-                {
-                    img: "🛡",
-                    name: "bara yad",
-                    points: 10,
-                    neededLevel:5
-                },
-            ],
-            healerSkills: [
-                {
-                    img: "🩹",
-                    name: "sticker",
-                    points: 10,
-                    neededLevel:1
-                },
-                {
-                    img: "💊",
-                    name: "lebosa",
-                    points: 10,
-                    neededLevel:3
-                },
-                {
-                    img: "🩺",
-                    name: "alloo?",
-                    points: 10,
-                    neededLevel:5
+                    neededLevel: 1
                 },
             ],
         }
     },
     computed: {
         ...mapGetters(['getUser']),
-        skills() {
-            switch (this.getUser.role) {
-                case "ATTACKER":
-                    return this.attackerSkills;
-                case "DEFENDER":
-                    return this.defenderSkills;
-                case "HEALER":
-                    return this.healerSkills;
-            }
-        }
     },
     methods: {
         dealPoints(points) {
@@ -101,12 +49,14 @@ export default {
 
 <style lang="scss">
 .skills-container {
-    height: 125px;
+    background-color: #162041;
+    width: 100%;
+    padding: 11px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     column-gap: 10px;
     position: absolute;
-    bottom: 0;
+    bottom: -175px;
 }
 </style>

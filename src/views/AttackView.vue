@@ -1,20 +1,26 @@
 <template>
-    <div class="container">
+    <div class="attack-container">
         <!-- {{ getUser }}
         <div class="team-container" v-for="team in allOtherTeams" :key="team.id" @click="attackTeam(team.id)">
             <h1>{{ team }}</h1>
         </div> -->
-        <div id="NW" @click="selectedTeamId = 'Astro'">
-            <BaseContainer :teamId="'Astro'" :selected="selectedTeamId === 'Astro'"></BaseContainer>
+        <div class="header-container">
+            <p class="logo">Level Up</p>
+            <p class="title">Battlefield</p>
         </div>
-        <div id="NE" @click="selectedTeamId = 'Kalos'">
-            <BaseContainer :teamId="'Kalos'" :selected="selectedTeamId === 'Kalos'"></BaseContainer>
-        </div>
-        <div id="SW" @click="selectedTeamId = 'Lumos'">
-            <BaseContainer :teamId="'Lumos'" :selected="selectedTeamId === 'Lumos'"></BaseContainer>
-        </div>
-        <div id="SE" @click="selectedTeamId = 'Dynamis'">
-            <BaseContainer :teamId="'Dynamis'" :selected="selectedTeamId === 'Dynamis'"></BaseContainer>
+        <div class="planets-battlefield">
+            <div id="NW" @click="selectedTeamId = 'Astro'">
+                <BaseContainer :teamId="'Astro'" :selected="selectedTeamId === 'Astro'"></BaseContainer>
+            </div>
+            <div id="NE" @click="selectedTeamId = 'Kalos'">
+                <BaseContainer :teamId="'Kalos'" :selected="selectedTeamId === 'Kalos'"></BaseContainer>
+            </div>
+            <div id="SW" @click="selectedTeamId = 'Lumos'">
+                <BaseContainer :teamId="'Lumos'" :selected="selectedTeamId === 'Lumos'"></BaseContainer>
+            </div>
+            <div id="SE" @click="selectedTeamId = 'Dynamis'">
+                <BaseContainer :teamId="'Dynamis'" :selected="selectedTeamId === 'Dynamis'"></BaseContainer>
+            </div>
         </div>
         <skills @dealPoints="dealPoints"></skills>
     </div>
@@ -22,7 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { collection, getFirestore, onSnapshot,doc,updateDoc,increment } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, updateDoc, increment } from 'firebase/firestore';
 import BaseContainer from '@/components/Base/BaseContainer.vue';
 import skills from '@/components/Skills/SkillsContainer.vue';
 
@@ -128,15 +134,46 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.container {
+.attack-container {
     height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.header-container {
+    width: 100%;
+    height: 150px;
+    background-color: #162041;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    margin-bottom: 20px;
+
+    & .logo {
+        font-family: 'pressstart2p';
+        color: #f4ee80;
+        text-shadow: 1px 2px #a14759;
+        font-size: 14px;
+    }
+
+    & .title {
+        font-family: 'pressstart2p';
+        font-size: 18px;
+
+    }
+}
+
+.planets-battlefield{
+    height: inherit;
+    position: relative;
 }
 
 #NW {
-    position: fixed;
+    position: absolute;
     width: 50%;
-    height: 40%;
-    top: 0;
+    height: 45%;
     left: 0;
     display: flex;
     justify-content: center;
@@ -145,10 +182,9 @@ export default {
 }
 
 #NE {
-    position: fixed;
+    position: absolute;
     width: 50%;
-    height: 40%;
-    top: 0;
+    height: 45%;
     left: 50%;
     display: flex;
     justify-content: center;
@@ -157,10 +193,10 @@ export default {
 }
 
 #SW {
-    position: fixed;
+    position: absolute;
     width: 50%;
-    height: 40%;
-    top: 40%;
+    height: 45%;
+    top: 45%;
     left: 0;
     display: flex;
     justify-content: center;
@@ -169,10 +205,10 @@ export default {
 }
 
 #SE {
-    position: fixed;
+    position: absolute;
     width: 50%;
-    height: 40%;
-    top: 40%;
+    height: 45%;
+    top: 45%;
     left: 50%;
     display: flex;
     justify-content: center;
@@ -189,4 +225,5 @@ export default {
 #SE {
     border-left: 1px solid #3E8898;
 }
+
 </style>
