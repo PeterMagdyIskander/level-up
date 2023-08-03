@@ -13,8 +13,7 @@
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/ChooseYourHero">Choose your hero</router-link>
             </li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Attack">Attack</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Defend">Defend</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battelfield">Battelfield</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/Attendance">Attendance</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
           </ul>

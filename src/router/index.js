@@ -23,19 +23,9 @@ const routes = [
     component: () => import('../views/QuestMoreInfoView.vue')
   },
   {
-    path: '/Attack',
-    name: 'Attack',
+    path: '/Battelfield',
+    name: 'Battelfield',
     component: () => import('../views/AttackView.vue')
-  },
-  {
-    path: '/Attack/:id',
-    name: 'AttackId',
-    component: () => import('../views/DealPointsView.vue')
-  },
-  {
-    path: '/Defend',
-    name: 'Defend',
-    component: () => import('../views/DealPointsView.vue')
   },
   {
     path: '/Attendance',

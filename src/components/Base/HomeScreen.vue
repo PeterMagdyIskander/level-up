@@ -1,11 +1,14 @@
 <template>
     <div class="home-container">
-        <h1 class="title">Level up</h1>
+        <div class="header-container">
+            <p class="logo">Level Up</p>
+            <p class="title">Hi {{ getUser.name }}</p>
+        </div>
         <img class="planet-img" v-if="getUser.teamId === 'Dynamis'" src="@/assets/dynamis-planet.svg" alt="dynamis planet">
         <img class="planet-img" v-if="getUser.teamId === 'Lumos'" src="@/assets/lumos-planet.svg" alt="lumos planet">
         <img class="planet-img" v-if="getUser.teamId === 'Kalos'" src="@/assets/kalos-planet.svg" alt="kalos planet">
         <img class="planet-img" v-if="getUser.teamId === 'Astro'" src="@/assets/astro-planet.svg" alt="astro planet">
-        
+
         <h1 class="planet-title" :class="getUser.teamId">{{ getUser.teamId }}</h1>
         <!-- <div class="level-container">
             <div class="level-container-level" :style="{ width: (getUser.exp / getUser.maxExp) * 100 + '%' }"></div>
@@ -19,11 +22,18 @@
             <h3>{{ myTeamData.health + " / " + myTeamData.maxHealth }}</h3>
         </div>
         <div class="navigation-section">
-            <div class="navigation-section-item">
-                <img src="@/assets/attack-icon.svg" alt="attack-icon">
+            <div class="navigation-section-item" @click="navigateTo('/Battelfield')">
+                <img v-if="getUser.role === 'ATTACKER'" src="@/assets/attack-icon.svg" alt="attack-icon">
+                <img v-if="getUser.role === 'DEFENDER'" src="@/assets/defend-icon.svg" alt="defend-icon">
+                <img v-if="getUser.role === 'HEALER'" src="@/assets/heal-icon.svg" alt="heal-icon">
             </div>
-            <div class="navigation-section-item">🕵️</div>
-            <div class="navigation-section-item">📚</div>
+            <div class="navigation-section-item" @click="navigateTo('/QuestCenter')">
+                <img src="@/assets/quest-center-icon.svg" alt="quest-center-icon">
+
+            </div>
+            <div class="navigation-section-item" @click="navigateTo('//MyQuest')">
+                <img src="@/assets/my-quest-icon.svg" alt="my-quest-icon">
+            </div>
         </div>
         <img class="levelup-img" src="@/assets/levelup-icon.svg" alt="dynamis planet">
     </div>
@@ -49,23 +59,23 @@ export default {
         onSnapshot(myTeam, snapshot => {
             this.myTeamData = { ...snapshot.data() };
         })
+    },
+    methods: {
+        navigateTo(to) {
+            this.$router.push(to);
+        }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.home-container{
-    padding: 10px 0;
+.home-container {
+    padding-bottom: 10px;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-}
-.title {
-    font-family: 'pressstart2p';
-    color: #f4ee80;
-    text-shadow: 0 5px #a14759;
+    row-gap: 30px;
 }
 
 .planet-img {
@@ -138,7 +148,30 @@ export default {
         font-size: 1.75rem;
     }
 }
-.levelup-img{
+
+.levelup-img {
     width: 70px;
+}
+
+.header-container {
+    width: 100%;
+    height: 150px;
+    background-color: #162041;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 20px;
+    & .logo {
+        font-family: 'pressstart2p';
+        color: #f4ee80;
+        text-shadow: 1px 2px #a14759;
+        font-size: 2rem;
+    }
+
+    & .title {
+        font-family: 'pressstart2p';
+        font-size: 18px;
+    }
 }
 </style>
