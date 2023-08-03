@@ -13,7 +13,11 @@
             <div class="more-info">
                 <div><img src="@/assets/exp-icon.svg" alt="exp icon">
                 </div>
-                <p>{{ quest.difficulty }}</p>
+                <div class="difficulty">
+                    <img v-if="quest.difficulty == 1" src="@/assets/easy.svg" alt="easy">
+                    <img v-if="quest.difficulty == 2" src="@/assets/medium.svg" alt="medium">
+                    <img v-if="quest.difficulty == 3" src="@/assets/hard.svg" alt="hard">
+                </div>
             </div>
             <div class="more-info">
                 <div> <img src="@/assets/gold-icon.svg" alt="exp icon">
@@ -131,5 +135,9 @@ p {
 .icon {
     font-family: 'pressstart2p';
     color: #F09455;
+}
+
+.difficulty {
+    text-align: left !important;
 }
 </style>

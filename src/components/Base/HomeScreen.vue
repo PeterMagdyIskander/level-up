@@ -4,16 +4,27 @@
             <p class="logo">Level Up</p>
             <p class="title">Hi {{ getUser.name }}</p>
         </div>
+        <div class="more-info">
+            <div class="more-info-level" :style="{ width: (getUser.exp / computeLevel[getUser.level]) * 100 + '%' }"></div>
+            <div class="more-info-info">
+                <p class="title">Your EXP</p>
+                <p class="info">{{ getUser.exp }} / {{computeLevel[getUser.level] }} </p>
+            </div>
+            <div class="more-info-separator"></div>
+            <div class="more-info-info">
+                <p class="title">Your Gold</p>
+                <p class="info">{{ getUser.gold }}</p>
+            </div>
+        </div>
         <img class="planet-img" v-if="getUser.teamId === 'Dynamis'" src="@/assets/dynamis-planet.svg" alt="dynamis planet">
         <img class="planet-img" v-if="getUser.teamId === 'Lumos'" src="@/assets/lumos-planet.svg" alt="lumos planet">
         <img class="planet-img" v-if="getUser.teamId === 'Kalos'" src="@/assets/kalos-planet.svg" alt="kalos planet">
         <img class="planet-img" v-if="getUser.teamId === 'Astro'" src="@/assets/astro-planet.svg" alt="astro planet">
 
         <h1 class="planet-title" :class="getUser.teamId">{{ getUser.teamId }}</h1>
-        <!-- <div class="level-container">
-            <div class="level-container-level" :style="{ width: (getUser.exp / getUser.maxExp) * 100 + '%' }"></div>
-        </div> -->
+
         <div class="health-section">
+
             <div class="health-section-container">
                 <div class="health-section-container-health"
                     :style="{ width: (myTeamData.health / myTeamData.maxHealth) * 100 + '%' }">
@@ -49,7 +60,23 @@ export default {
     computed: mapGetters(['getUser']),
     data() {
         return {
-            myTeamData: {}
+            myTeamData: {},
+            computeLevel: {
+                0: 20,
+                1: 25,
+                2: 35,
+                3: 50,
+                4: 70,
+                5: 95,
+                6: 125,
+                7: 155,
+                8: 200,
+                9: 250,
+                10: 300,
+                11: 350,
+                12: 350,
+                13: 350,
+            }
         }
     },
     mounted() {
@@ -69,6 +96,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+p {
+    padding: 0;
+    margin: 0;
+}
+
 .home-container {
     padding-bottom: 10px;
     height: 100%;
@@ -76,6 +108,56 @@ export default {
     flex-direction: column;
     align-items: center;
     row-gap: 30px;
+}
+
+.more-info {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    background-color: #111323;
+    box-shadow: 0px -3px 6px #0000005C;
+    border: 0.5px solid #F5F5F5;
+    border-radius: 6px;
+    z-index: 0;
+    position: relative;
+    overflow: hidden;
+
+    &-level {
+        left: 0;
+        position: absolute;
+        z-index: 1;
+        height: 100%;
+        
+       }
+
+    &-separator {
+        z-index: 3;
+        border-left: 1px solid #fff;
+        height: 40px;
+    }
+
+    &-info {
+        position: inherit;
+        z-index: 3;
+        padding: 10px 0;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        & .title {
+            font-family: 'ptmono';
+            font-size: 14px;
+            color: #E5E5E5;
+        }
+
+        & .info {
+            font-family: 'pressstart2p';
+            font-size: 17px;
+            color: #E5E5E5;
+        }
+    }
 }
 
 .planet-img {
@@ -162,6 +244,7 @@ export default {
     align-items: center;
     justify-content: center;
     row-gap: 20px;
+
     & .logo {
         font-family: 'pressstart2p';
         color: #f4ee80;

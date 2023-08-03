@@ -8,11 +8,6 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/ChooseYourHero',
-    name: 'ChooseYourHero',
-    component: () => import('../views/ChooseYourHeroView.vue')
-  },
-  {
     path: '/QuestCenter',
     name: 'QuestCenter',
     component: () => import('../views/QuestCenterView.vue')
@@ -45,5 +40,4 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-
 export default router

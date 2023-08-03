@@ -34,11 +34,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-  all: unset;
-  font-family: 'pressstart2p';
-  color: #f4ee80;
-  font-size: 3rem;
-  text-shadow: 0 5px #a14759;
+div {
+  text-align: center;
+  padding: 250px 0;
+  button {
+    all: unset;
+    font-family: 'pressstart2p';
+    color: #f4ee80;
+    font-size: 3rem;
+    text-shadow: 0 5px #a14759;
+  }
 }
 </style>

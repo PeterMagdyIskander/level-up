@@ -10,12 +10,10 @@
         <div class="sidemenu__wrapper">
           <ul class="sidemenu__list">
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/">Home</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"><router-link to="/ChooseYourHero">Choose your hero</router-link>
-            </li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battelfield">Battelfield</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Attendance">Attendance</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Attendance">Attendance</router-link></li>
           </ul>
         </div>
       </nav>
@@ -47,9 +45,9 @@ body {
   background-image: linear-gradient(#252a52 .1em, transparent .1em), linear-gradient(90deg, #252a52 .1em, transparent .1em);
   background-size: 2em 2em;
   background-color: #17182d !important;
-  
+
   >* {
-    
+
     color: #FFF;
   }
 }
@@ -60,6 +58,8 @@ body {
 }
 
 #sidemenu {
+  text-align: center;
+
   nav {
     width: 100%;
     height: 100%;
@@ -153,7 +153,7 @@ body {
           font-family: 'pressstart2p';
           color: #f4ee80;
           font-size: 1.5rem;
-          text-shadow: 0 5px #a14759;
+          text-shadow: 0 3px #a14759;
         }
       }
     }
@@ -174,5 +174,13 @@ body {
 .translateX-leave-to {
   transform: translateX(-200px);
   opacity: 0;
+}
+
+a.router-link-active{
+  all: unset;
+        font-family: 'pressstart2p';
+        color: #f4ee80 !important;
+        font-size: 1.5rem;
+        text-shadow: 0 3px #a14759;
 }
 </style>

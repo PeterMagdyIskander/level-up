@@ -7,6 +7,9 @@
             </div>
         </div>
         <button @click="addAttendance">Add Attendance</button>
+        <div class="drop-down-item">
+            {{ selectedUserName }}
+        </div>
     </div>
 </template>
 <script>
@@ -20,6 +23,7 @@ export default {
             users: [
             ],
             selectedUser: "",
+            selectedUserName: ""
         }
     },
     computed: {
@@ -29,7 +33,7 @@ export default {
             }
             let searchResult = this.users.filter(user => user.name.toLowerCase().includes(this.searchText.toLowerCase()));
             return searchResult
-        }
+        },
     },
     created() {
         const firestore = getFirestore();
@@ -40,9 +44,10 @@ export default {
     },
     methods: {
         selectUser(user) {
-            this.selectedUser = user
+            this.selectedUser = user;
+            this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name
         },
-        addAttendance(){
+        addAttendance() {
             //do points for attendance
         }
 
@@ -51,6 +56,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+div {
+    text-align: center;
+    padding: 50px;
+}
+
 .drop-down {
     height: 300px;
 

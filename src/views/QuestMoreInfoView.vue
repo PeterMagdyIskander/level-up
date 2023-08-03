@@ -4,7 +4,7 @@
 
         <div class="button-container">
             <button @click="accept">START</button>
-            <button @click="decline">REJECT</button>
+            <button class="reject" @click="decline">REJECT</button>
         </div>
     </div>
 </template>
@@ -70,6 +70,12 @@ export default {
         color: #E5E5E5;
         font-size: 1.2rem;
         font-family: 'pressstart2p';
+    }
+    .reject{
+        background-color: #18182E;
+        box-shadow: 0px -3px 6px #0000005C;
+        border: 1px solid #FFFFFF;
+        border-radius: 6px;
     }
 }
 </style>
