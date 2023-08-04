@@ -5,7 +5,6 @@
             <p class="title">Hi {{ getUser.name }}</p>
         </div>
         <div class="more-info">
-            <div class="more-info-level" :style="{ width: (getUser.exp / computeLevel[getUser.level]) * 100 + '%' }"></div>
             <div class="more-info-info">
                 <p class="title">Your EXP</p>
                 <p class="info">{{ getUser.exp }} / {{computeLevel[getUser.level] }} </p>
@@ -121,16 +120,7 @@ p {
     border: 0.5px solid #F5F5F5;
     border-radius: 6px;
     z-index: 0;
-    position: relative;
-
-    &-level {
-        left: 0;
-        position: absolute;
-        z-index: 1;
-        height: 100%;
-        
-       }
-
+    
     &-separator {
         z-index: 3;
         border-left: 1px solid #fff;
@@ -138,7 +128,6 @@ p {
     }
 
     &-info {
-        position: inherit;
         z-index: 3;
         padding: 10px 0;
         display: flex;
