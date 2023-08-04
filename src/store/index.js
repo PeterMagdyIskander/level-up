@@ -38,7 +38,7 @@ export default createStore({
               name: res.user.displayName,
               role: "HEALER",
               teamId: "Dynamis",
-              timeStamp: new Date(),
+              timeStamp: new Date().toISOString(),
             }, { merge: true });
             let user = {
               uid: res.user.uid,
@@ -49,7 +49,7 @@ export default createStore({
               name: res.user.displayName,
               role: "HEALER",
               teamId: "Dynamis",
-              timeStamp: new Date(),
+              timeStamp: new Date().toISOString(),
             }
             commit('setUser', user)
           }
