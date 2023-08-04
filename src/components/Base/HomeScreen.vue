@@ -116,7 +116,6 @@ p {
     align-items: center;
     column-gap: 20px;
     background-color: #111323;
-    box-shadow: 0px -3px 6px #0000005C;
     border: 0.5px solid #F5F5F5;
     border-radius: 6px;
     z-index: 0;
