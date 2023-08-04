@@ -1,7 +1,7 @@
 <template>
     <div class="skills-container">
         <skill-container v-for="skill in skills" :key="skill.name" :skillImg="skill.img" :skillName="skill.name"
-            :skillPoints="skill.points" @dealPoints="dealPoints" :active="getUser.level >= skill.neededLevel">
+            :skillPoints="skill.points" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel)">
         </skill-container>
     </div>
 </template>
@@ -26,12 +26,12 @@ export default {
                 {
                     name: "Skill 2",
                     points: 10,
-                    neededLevel: 1
+                    neededLevel: 3
                 },
                 {
                     name: "Skill 3",
                     points: 10,
-                    neededLevel: 1
+                    neededLevel: 5
                 },
             ],
         }
@@ -42,6 +42,18 @@ export default {
     methods: {
         dealPoints(points) {
             this.$emit('dealPoints', points)
+        },
+        addHours(date, hours) {
+            date.setHours(date.getHours() + hours);
+
+            return date;
+        },
+        isSkillActive(neededLevel) {
+            let dateNow = new Date();
+            let userTimeStamp = this.getUser.timeStamp;
+            if (userTimeStamp == null)
+                userTimeStamp = new Date();
+            return this.getUser.level >= neededLevel && dateNow >= this.addHours(new Date(userTimeStamp), 1);
         }
     }
 }
