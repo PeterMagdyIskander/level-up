@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <LoginPage v-if="getUser==null"/>
+    <LoginPage v-if="getUser == null" />
+    <attendance v-else-if="getUser.role === 'ADMIN'"></attendance>
     <home-screen v-else></home-screen>
   </div>
 </template>
@@ -10,17 +11,20 @@
 import LoginPage from '@/components/LoginPage.vue'
 import { mapGetters } from 'vuex';
 import HomeScreen from '../components/Base/HomeScreen.vue'
+import Attendance from './AttendanceView.vue';
 export default {
   name: 'HomeView',
   components: {
     LoginPage,
-    HomeScreen
+    HomeScreen,
+    Attendance
   },
   computed: mapGetters(['getUser']),
+ 
 }
 </script>
 <style lang="scss" scoped>
-.home{
+.home {
   height: 100%;
 }
 </style>

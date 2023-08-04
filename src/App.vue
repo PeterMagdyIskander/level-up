@@ -1,5 +1,5 @@
 <template>
-  <div id="sidemenu">
+  <div id="sidemenu" v-if="getUser!=null && getUser?.role!='ADMIN'">
     <button class="sidemenu__btn" v-on:click="navOpen = !navOpen" v-bind:class="{ active: navOpen }">
       <span class="top"></span>
       <span class="mid"></span>
@@ -13,7 +13,6 @@
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battelfield">Battelfield</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"><router-link to="/Attendance">Attendance</router-link></li>
           </ul>
         </div>
       </nav>
@@ -24,6 +23,8 @@
 </template>
 
 <script>
+
+import { mapGetters, mapActions } from 'vuex';
 import { initialize } from '@/firebase';
 const { firebaseApp, firestore, auth } = initialize();
 export default {
@@ -35,7 +36,8 @@ export default {
     closeMenu() {
       this.navOpen = false;
     }
-  }
+  },
+  computed: mapGetters(['getUser',]),
 }
 </script>
 <style lang="scss">
@@ -70,8 +72,6 @@ body {
     top: 0;
     left: 0;
     z-index: 99;
-    // box-shadow: 2px 0 3px$grey-6;
-    // overflow-y: scroll;
   }
 
   .sidemenu {
@@ -176,11 +176,11 @@ body {
   opacity: 0;
 }
 
-a.router-link-active{
+a.router-link-active {
   all: unset;
-        font-family: 'pressstart2p';
-        color: #f4ee80 !important;
-        font-size: 1.5rem;
-        text-shadow: 0 3px #a14759;
+  font-family: 'pressstart2p';
+  color: #f4ee80 !important;
+  font-size: 1.5rem;
+  text-shadow: 0 3px #a14759;
 }
 </style>

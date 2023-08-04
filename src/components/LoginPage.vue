@@ -20,16 +20,6 @@ export default {
       this.setQuests();
     }
   },
-  watch: {
-    getUser: {
-      deep: true,
-      handler(newVal) {
-        if (newVal.role === "") {
-          router.push('/ChooseYourHero');
-        }
-      }
-    }
-  }
 };
 </script>
 

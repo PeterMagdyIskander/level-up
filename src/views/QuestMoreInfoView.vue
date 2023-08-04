@@ -71,7 +71,8 @@ export default {
         font-size: 1.2rem;
         font-family: 'pressstart2p';
     }
-    .reject{
+
+    .reject {
         background-color: #18182E;
         box-shadow: 0px -3px 6px #0000005C;
         border: 1px solid #FFFFFF;
