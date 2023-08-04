@@ -27,9 +27,9 @@ export default createStore({
         let allUsers = [];
         let newUser = false;
         onSnapshot(userCollectionReference, snapshot => {
+          allUsers = snapshot.docs.map(doc => doc.id);
           if (!allUsers.includes(res.user.uid)) {
             newUser = true;
-            allUsers = snapshot.docs.map(doc => doc.id);
             setDoc(doc(firestore, "users", res.user.uid), {
               assignedQuestId: "",
               exp: 0,
