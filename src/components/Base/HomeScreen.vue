@@ -95,14 +95,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p {
-    padding: 0;
-    margin: 0;
-}
+
 
 .home-container {
     padding-bottom: 10px;
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -232,11 +228,12 @@ p {
     justify-content: center;
     row-gap: 20px;
 
+    margin-bottom: 20px;
     & .logo {
         font-family: 'pressstart2p';
         color: #f4ee80;
         text-shadow: 1px 2px #a14759;
-        font-size: 2rem;
+        font-size: 14px;
     }
 
     & .title {

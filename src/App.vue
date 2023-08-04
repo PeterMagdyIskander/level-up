@@ -13,6 +13,7 @@
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battlefield">Battlefield</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"><router-link to="/TeamRoles">Roles</router-link></li>
           </ul>
         </div>
       </nav>
@@ -49,7 +50,8 @@ body {
   background-color: #17182d !important;
 
   >* {
-
+    padding: 0;
+    margin: 0;
     color: #FFF;
   }
 }
@@ -181,7 +183,7 @@ body {
 // }
 a.router-link-active {
   all: unset;
-  font-family: 'pressstart2p';
+  font-family: 'pressstart2p'!important;
   color: #f4ee80 !important;
   font-size: 1.5rem;
   text-shadow: 0 3px #a14759;

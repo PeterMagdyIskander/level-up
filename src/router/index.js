@@ -32,6 +32,11 @@ const routes = [
     name: 'MyQuest',
     component: () => import('../views/MyQuestView.vue')
   },
+  {
+    path: '/TeamRoles',
+    name: 'TeamRoles',
+    component: () => import('../views/RolesView.vue')
+  },
 
 
 ]
