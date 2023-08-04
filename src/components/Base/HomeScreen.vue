@@ -122,7 +122,6 @@ p {
     border-radius: 6px;
     z-index: 0;
     position: relative;
-    overflow: hidden;
 
     &-level {
         left: 0;
