@@ -11,7 +11,7 @@
           <ul class="sidemenu__list">
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/">Home</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/QuestCenter">Quest Center</router-link></li>
-            <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battelfield">Battelfield</router-link></li>
+            <li class="sidemenu__item" @click="closeMenu"> <router-link to="/Battlefield">Battlefield</router-link></li>
             <li class="sidemenu__item" @click="closeMenu"><router-link to="/MyQuest">My Quest</router-link></li>
           </ul>
         </div>
@@ -141,6 +141,7 @@ body {
 
     &__item {
       a {
+        font-family: 'ptmono';
         text-decoration: none;
         line-height: 1.6em;
         font-size: 1.6em;
@@ -175,7 +176,9 @@ body {
   transform: translateX(-200px);
   opacity: 0;
 }
-
+// a{
+//   font-family: 'ptmono';
+// }
 a.router-link-active {
   all: unset;
   font-family: 'pressstart2p';

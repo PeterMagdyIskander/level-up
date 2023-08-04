@@ -18,8 +18,8 @@ const routes = [
     component: () => import('../views/QuestMoreInfoView.vue')
   },
   {
-    path: '/Battelfield',
-    name: 'Battelfield',
+    path: '/Battlefield',
+    name: 'Battlefield',
     component: () => import('../views/AttackView.vue')
   },
   {
