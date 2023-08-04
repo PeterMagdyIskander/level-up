@@ -9,16 +9,16 @@
             <p class="title">Battlefield</p>
         </div>
         <div class="planets-battlefield">
-            <div id="NW" @click="selectedTeamId = 'Astro'">
+            <div id="NW" @click="handleClick('Astro')">
                 <BaseContainer :teamId="'Astro'" :selected="selectedTeamId === 'Astro'"></BaseContainer>
             </div>
-            <div id="NE" @click="selectedTeamId = 'Kalos'">
+            <div id="NE" @click="handleClick('Kalos')">
                 <BaseContainer :teamId="'Kalos'" :selected="selectedTeamId === 'Kalos'"></BaseContainer>
             </div>
-            <div id="SW" @click="selectedTeamId = 'Lumos'">
+            <div id="SW" @click="handleClick('Lumos')">
                 <BaseContainer :teamId="'Lumos'" :selected="selectedTeamId === 'Lumos'"></BaseContainer>
             </div>
-            <div id="SE" @click="selectedTeamId = 'Dynamis'">
+            <div id="SE" @click="handleClick('Dynamis')">
                 <BaseContainer :teamId="'Dynamis'" :selected="selectedTeamId === 'Dynamis'"></BaseContainer>
             </div>
         </div>
@@ -74,6 +74,11 @@ export default {
             this.allOtherTeams = [...data.filter(team => team.id != this.getUser.teamId)]
         })
     }, methods: {
+        handleClick(planetName) {
+            if (planetName != this.getUser.teamId) {
+                this.selectedTeamId = planetName;
+            }
+        },
         addHours(date, hours) {
             date.setHours(date.getHours() + hours);
 
@@ -88,47 +93,46 @@ export default {
 
             let dateNow = new Date();
             let userTimeStamp = this.getUser.timeStamp;
-            // if (userTimeStamp == null)
-            //     userTimeStamp = new Date();
-            // if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
+            if (userTimeStamp == null)
+                userTimeStamp = new Date();
+            if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
+                switch (this.getUser.role) {
+                    case "ATTACKER":
+                        const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
+                        let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
+                        let block = this.enemyTeamData.dmgBlock;
 
-            // } else {
-            //     alert("not yet")
-            // }
-            switch (this.getUser.role) {
-                case "ATTACKER":
-                    const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
-                    let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
-                    let block = this.enemyTeamData.dmgBlock;
-
-                    if (myDmg > block) {
-                        myDmg = (myDmg - block) * -1;
-                        block *= -1;
-                    } else if (myDmg < block) {
-                        block = myDmg * -1;
-                        myDmg = 0;
-                    } else {
-                        block = myDmg * -1
-                        myDmg = 0;
-                    }
-                    updateDoc(enemyTeamDoc, {
-                        health: increment(myDmg),
-                        dmgBlock: increment(block),
-                    })
-                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                    break;
-                case "HEALER":
-                    updateDoc(myTeamDoc, {
-                        health: increment(points),
-                    })
-                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                    break;
-                case "DEFENDER":
-                    updateDoc(myTeamDoc, {
-                        dmgBlock: increment(points),
-                    })
-                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                    break;
+                        if (myDmg > block) {
+                            myDmg = (myDmg - block) * -1;
+                            block *= -1;
+                        } else if (myDmg < block) {
+                            block = myDmg * -1;
+                            myDmg = 0;
+                        } else {
+                            block = myDmg * -1
+                            myDmg = 0;
+                        }
+                        updateDoc(enemyTeamDoc, {
+                            health: increment(myDmg),
+                            dmgBlock: increment(block),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "HEALER":
+                        updateDoc(myTeamDoc, {
+                            health: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                    case "DEFENDER":
+                        updateDoc(myTeamDoc, {
+                            dmgBlock: increment(points),
+                        })
+                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                        break;
+                }
+            } else {
+                alert("not yet")
             }
         }
     }
