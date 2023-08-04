@@ -88,46 +88,47 @@ export default {
 
             let dateNow = new Date();
             let userTimeStamp = this.getUser.timeStamp;
-            if (userTimeStamp == null)
-                userTimeStamp = new Date();
-            if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
-                switch (this.getUser.role) {
-                    case "ATTACKER":
-                        const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
-                        let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
-                        let block = this.enemyTeamData.dmgBlock;
+            // if (userTimeStamp == null)
+            //     userTimeStamp = new Date();
+            // if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
 
-                        if (myDmg > block) {
-                            myDmg = (myDmg - block) * -1;
-                            block *= -1;
-                        } else if (myDmg < block) {
-                            block = myDmg * -1;
-                            myDmg = 0;
-                        } else {
-                            block = myDmg * -1
-                            myDmg = 0;
-                        }
-                        updateDoc(enemyTeamDoc, {
-                            health: increment(myDmg),
-                            dmgBlock: increment(block),
-                        })
-                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                        break;
-                    case "HEALER":
-                        updateDoc(myTeamDoc, {
-                            health: increment(points),
-                        })
-                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                        break;
-                    case "DEFENDER":
-                        updateDoc(myTeamDoc, {
-                            dmgBlock: increment(points),
-                        })
-                        updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                        break;
-                }
-            } else {
-                alert("not yet")
+            // } else {
+            //     alert("not yet")
+            // }
+            switch (this.getUser.role) {
+                case "ATTACKER":
+                    const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
+                    let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
+                    let block = this.enemyTeamData.dmgBlock;
+
+                    if (myDmg > block) {
+                        myDmg = (myDmg - block) * -1;
+                        block *= -1;
+                    } else if (myDmg < block) {
+                        block = myDmg * -1;
+                        myDmg = 0;
+                    } else {
+                        block = myDmg * -1
+                        myDmg = 0;
+                    }
+                    updateDoc(enemyTeamDoc, {
+                        health: increment(myDmg),
+                        dmgBlock: increment(block),
+                    })
+                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                    break;
+                case "HEALER":
+                    updateDoc(myTeamDoc, {
+                        health: increment(points),
+                    })
+                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                    break;
+                case "DEFENDER":
+                    updateDoc(myTeamDoc, {
+                        dmgBlock: increment(points),
+                    })
+                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                    break;
             }
         }
     }
@@ -165,7 +166,7 @@ export default {
     }
 }
 
-.planets-battlefield{
+.planets-battlefield {
     height: inherit;
     position: relative;
 }
@@ -225,5 +226,4 @@ export default {
 #SE {
     border-left: 1px solid #3E8898;
 }
-
 </style>
