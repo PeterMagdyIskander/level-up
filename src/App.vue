@@ -50,12 +50,9 @@ body {
   background-color: #17182d !important;
 
   >* {
-    padding: 0;
-    margin: 0;
     color: #FFF;
   }
 }
-
 #app {
   height: 100%;
   position: relative;

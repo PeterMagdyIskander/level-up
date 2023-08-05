@@ -18,7 +18,7 @@ import { mapGetters } from 'vuex';
 export default {
     name: "quest-center-view",
     components: { QuestCard },
-    computed: mapGetters(['getQuests']),
+    computed: mapGetters(['getUser', 'getQuests']),
     data() {
         return {
             questList: [],
@@ -28,11 +28,11 @@ export default {
     methods: {
         show(role) {
             this.showingRole = role;
-            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "" && quest.status === "OPEN")
+            this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
         }
     },
     created() {
-        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && quest.assignedTo === "" && quest.status === "OPEN")
+        this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
     }
 }
 </script> 
@@ -58,19 +58,23 @@ p {
         text-shadow: 1px 2px #a14759;
         font-size: 14px;
     }
-    & .title{
+
+    & .title {
         font-family: 'pressstart2p';
         font-size: 18px;
-        
+
     }
 }
-button{
+
+button {
     all: unset;
     width: 80px;
     background-color: #444a5c;
     padding: 10px;
-    font-family: 'cygre';
+    font-family: 'ptmono';
 }
+
 .active {
     background-color: #162041;
-}</style>
+}
+</style>

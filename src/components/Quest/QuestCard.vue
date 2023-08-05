@@ -62,7 +62,7 @@ p {
         align-items: center;
 
         p {
-            font-family: 'cygre';
+            font-family: 'ptmono';
             color: #E5E5E5;
             white-space: nowrap;
             overflow: hidden;

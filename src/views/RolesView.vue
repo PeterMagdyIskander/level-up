@@ -4,12 +4,15 @@
             <p class="logo">Level Up</p>
             <p class="title">Roles</p>
         </div>
+        <button @click="show('Attacker')" :class="{ active: showingRole === 'Attacker' }">Attacker</button>
+        <button @click="show('Defender')" :class="{ active: showingRole === 'Defender' }">Defender</button>
+        <button @click="show('Healer')" :class="{ active: showingRole === 'Healer' }">Healer</button>
         <div class="know-your-role">
             <p class="title">Know Your Role</p>
-            <img v-if="getUser.role === 'ATTACKER'" src="@/assets/attack-icon.svg" alt="attack-icon">
-            <img v-if="getUser.role === 'DEFENDER'" src="@/assets/defend-icon.svg" alt="defend-icon">
-            <img v-if="getUser.role === 'HEALER'" src="@/assets/heal-icon.svg" alt="heal-icon">
-            <p class="role">{{ getUser.role }}</p>
+            <img v-if="showingRole === 'Attacker'" src="@/assets/attack-icon.svg" alt="attack-icon">
+            <img v-if="showingRole === 'Defender'" src="@/assets/defend-icon.svg" alt="defend-icon">
+            <img v-if="showingRole === 'Healer'" src="@/assets/heal-icon.svg" alt="heal-icon">
+            <p class="role">{{ showingRole }}</p>
 
         </div>
         <div class="info">
@@ -25,32 +28,31 @@
                 </div>
             </div>
 
-            <p class="info-title" v-if="getUser.role === 'HEALER'">Your role affects your team's health</p>
-            <p class="info-title" v-if="getUser.role === 'DEFENDER'">Your role affects your team's block</p>
-            <p class="info-title" v-if="getUser.role === 'ATTACKER'">Your role affects an enemy team's health</p>
+            <p class="info-title" v-if="showingRole === 'Healer'">Your role affects your team's health</p>
+            <p class="info-title" v-if="showingRole === 'Defender'">Your role affects your team's block</p>
+            <p class="info-title" v-if="showingRole === 'Attacker'">Your role affects an enemy team's health</p>
         </div>
         <div class="skills" v-for="(skill, index) in skills" :key="index">
             <p class="skills-title">Skill {{ index + 1 }} <span>unlocked at level {{ skill.neededLevel }}</span></p>
             <p class="skills-desc"> what is does: {{ skill.desc }}</p>
         </div>
-        <img class="levelup-img" src="@/assets/levelup-icon.svg" alt="dynamis planet">
+        <div class="img-container">
+            <img class="levelup-img" src="@/assets/levelup-icon.svg" alt="dynamis planet">
+        </div>
     </div>
 </template>
 
 <script>
-
-import { mapGetters } from 'vuex';
 export default {
     name: "roles-view",
     computed: {
-        ...mapGetters(['getUser']),
         skills() {
-            switch (this.getUser.role) {
-                case "ATTACKER":
+            switch (this.showingRole) {
+                case "Attacker":
                     return this.attackerSkills;
-                case "DEFENDER":
+                case "Defender":
                     return this.defenderSkills;
-                case "HEALER":
+                case "Healer":
                     return this.healerSkills;
             }
         }
@@ -99,8 +101,14 @@ export default {
                     desc: "lorem20"
                 }
             ],
+            showingRole: "Defender"
         }
     },
+    methods: {
+        show(role) {
+            this.showingRole = role;
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
@@ -112,7 +120,19 @@ p {
 .roles-container {
     height: 100%;
     width: 100%;
-    text-align: center;
+}
+
+button {
+    all: unset;
+    width: 80px;
+    background-color: #444a5c;
+    padding: 10px;
+    font-family: 'ptmono';
+    margin-bottom: 20px;
+}
+
+.active {
+    background-color: #162041;
 }
 
 .header-container {
@@ -124,7 +144,6 @@ p {
     align-items: center;
     justify-content: center;
     row-gap: 20px;
-    margin-bottom: 20px;
 
     & .logo {
         font-family: 'pressstart2p';
@@ -256,8 +275,14 @@ p {
         font-size: 11px;
     }
 }
-.levelup-img {
-    width: 70px;
-    margin: 50px 0;
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .levelup-img {
+        width: 70px;
+        margin: 50px 0;
+    }
 }
 </style>

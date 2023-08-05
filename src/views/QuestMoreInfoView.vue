@@ -11,7 +11,7 @@
 <script>
 import router from '@/router'
 import { mapGetters, mapActions } from 'vuex';
-import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { collection, doc, getFirestore, updateDoc, arrayUnion } from 'firebase/firestore';
 import QuestMoreInfo from '@/components/Quest/QuestMoreInfo.vue';
 export default {
     name: "quest-more-info-view",
@@ -42,8 +42,11 @@ export default {
                 let updatedUser = this.getUser;
                 updatedUser.assignedQuestId = this.$route.params.id;
                 this.updateUser(updatedUser);
-                updateDoc(questDoc, { assignedTo: this.getUser.uid, status: "STARTED" })
-
+                updateDoc(questDoc, { assignedTo: arrayUnion(this.getUser.uid) })
+                alert("Assigned successfuly!");
+                router.push('/MyQuest');
+            }else{
+                alert("You already have a quest, please finish it first!");
             }
         },
         decline() {
