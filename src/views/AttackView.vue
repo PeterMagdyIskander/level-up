@@ -64,15 +64,30 @@ export default {
             const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
             this.allOtherTeams = [...data.filter(team => team.id != this.getUser.teamId)]
         })
+        const myTeam = doc(teamCollectionReference, this.getUser.teamId)
+        onSnapshot(myTeam, snapshot => {
+            this.myTeamData = { ...snapshot.data() };
+        })
+
     }, methods: {
         handleClick(planetName) {
             if (this.getUser.role === "ATTACKER") {
                 if (planetName != this.getUser.teamId) {
                     this.selectedTeamId = planetName;
+                    const firestore = getFirestore();
+                    const teamCollectionReference = collection(firestore, 'teams');
+                    const enemyTeam = doc(teamCollectionReference, planetName)
+                    onSnapshot(enemyTeam, snapshot => {
+                        this.enemyTeamData = { ...snapshot.data() };
+                    })
+                } else {
+                    alert("You can't attack your base!")
                 }
             } else {
                 if (planetName === this.getUser.teamId) {
                     this.selectedTeamId = planetName;
+                } else {
+                    alert("You can't defend an enemy team's base!")
                 }
             }
 
