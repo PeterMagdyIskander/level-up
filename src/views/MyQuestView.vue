@@ -38,10 +38,8 @@ export default {
         submit() {
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
-            const questCollectionReference = collection(firestore, 'quests');
             const userDoc = doc(userCollectionReference, this.getUser.uid)
-            const questDoc = doc(questCollectionReference, this.getUser.assignedQuestId)
-            if (this.getUser.role === this.quest.role) {
+             if (this.getUser.role === this.quest.role) {
                 updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
             } else {
                 updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
@@ -49,7 +47,6 @@ export default {
             let updatedUser = this.getUser;
             updatedUser.assignedQuestId = "";
             this.updateUser(updatedUser);
-            updateDoc(questDoc, { status: "CLOSED" })
             router.push("/QuestCenter")
 
         }

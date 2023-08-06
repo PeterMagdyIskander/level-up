@@ -7,7 +7,7 @@
         <div class="more-info">
             <div class="more-info-info">
                 <p class="title">Your EXP</p>
-                <p class="info">{{ getUser.exp }} / {{computeLevel[getUser.level] }} </p>
+                <p class="info">{{ getUser.exp }} / {{ computeLevel[getUser.level] }} </p>
             </div>
             <div class="more-info-separator"></div>
             <div class="more-info-info">
@@ -53,7 +53,7 @@
 
 import { mapGetters } from 'vuex';
 
-import { collection, getFirestore, onSnapshot, doc } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, addDoc } from 'firebase/firestore';
 export default {
     name: "home-screen",
     computed: mapGetters(['getUser']),
@@ -95,8 +95,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 .home-container {
     padding-bottom: 10px;
     display: flex;
@@ -115,7 +113,7 @@ export default {
     border: 1px solid #F5F5F5;
     border-radius: 6px;
     z-index: 0;
-    
+
     &-separator {
         z-index: 3;
         border-left: 1px solid #fff;
@@ -229,6 +227,7 @@ export default {
     row-gap: 20px;
 
     margin-bottom: 20px;
+
     & .logo {
         font-family: 'pressstart2p';
         color: #f4ee80;

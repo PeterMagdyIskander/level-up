@@ -4,9 +4,9 @@
             <p class="logo">Level Up</p>
             <p class="title">Quest Center</p>
         </div>
-        <button @click="show('ATTACKER')" :class="{ active: showingRole === 'ATTACKER' }">Attacker</button>
-        <button @click="show('DEFENDER')" :class="{ active: showingRole === 'DEFENDER' }">Defender</button>
-        <button @click="show('HEALER')" :class="{ active: showingRole === 'HEALER' }">Healer</button>
+        <button @click="show('attacker')" :class="{ active: showingRole === 'attacker' }">Attacker</button>
+        <button @click="show('defender')" :class="{ active: showingRole === 'defender' }">Defender</button>
+        <button @click="show('healer')" :class="{ active: showingRole === 'healer' }">Healer</button>
         <quest-card v-for="quest in questList" :key="quest.id" :title="quest.title" :id="quest.id"
             :difficulty="quest.difficulty"></quest-card>
     </div>
@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             questList: [],
-            showingRole: "DEFENDER"
+            showingRole: "defender"
         }
     },
     methods: {
