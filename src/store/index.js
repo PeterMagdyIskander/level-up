@@ -32,6 +32,9 @@ export default createStore({
             newUser = true;
             setDoc(doc(firestore, "users", res.user.uid), {
               assignedQuestId: "",
+              attackAmp:1,
+              blockAmp:1,
+              healAmp:1,
               exp: 0,
               gold: 0,
               level: 0,
@@ -43,6 +46,9 @@ export default createStore({
             let user = {
               uid: res.user.uid,
               assignedQuestId: "",
+              attackAmp:1,
+              blockAmp:1,
+              healAmp:1,
               exp: 0,
               gold: 0,
               level: 0,
