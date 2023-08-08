@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
-import { collection, doc, getFirestore, onSnapshot, updateDoc, setDoc } from 'firebase/firestore';
+import { collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, increment } from 'firebase/firestore';
 export default createStore({
   state: {
     user: null,
@@ -58,20 +58,90 @@ export default createStore({
           const userDoc = doc(userCollectionReference, res.user.uid)
           onSnapshot(userDoc, snapshot => {
             let computeLevel = {
-              0: 20,
-              1: 25,
-              2: 35,
-              3: 50,
-              4: 70,
-              5: 95,
-              6: 125,
-              7: 155,
-              8: 200,
-              9: 250,
-              10: 300,
-              11: 350,
-              12: 350,
-              13: 350,
+              0: {
+                neededExp: 20,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              1: {
+                neededExp: 25,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              2: {
+                neededExp: 35,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              3: {
+                neededExp: 50,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              4: {
+                neededExp: 70,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              5: {
+                neededExp: 95,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              6: {
+                neededExp: 125,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              7: {
+                neededExp: 155,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              8: {
+                neededExp: 200,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              9: {
+                neededExp: 250,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              10: {
+                neededExp: 300,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              11: {
+                neededExp: 350,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              12: {
+                neededExp: 350,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
+              13: {
+                neededExp: 350,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+              },
             }
 
             const data = snapshot.data();
@@ -79,11 +149,11 @@ export default createStore({
               uid: res.user.uid
               , ...data
             }
-            if (user.exp >= computeLevel[user.level]) {
+            if (user.exp >= computeLevel[user.level].neededExp) {
               shouldLevelUp = true;
               nextLevel = user.level + 1;
-              nextExp = user.exp - computeLevel[user.level];
-              updateDoc(userDoc, { level: nextLevel, exp: nextExp })
+              nextExp = user.exp - computeLevel[user.level].neededExp;
+              updateDoc(userDoc, { level: nextLevel, exp: nextExp, healAmp: increment(computeLevel[user.level].healAmp), blockAmp: increment(computeLevel[user.level].blockAmp), attackAmp: increment(computeLevel[user.level].attackAmp) })
             }
             commit('setUser', user)
           })

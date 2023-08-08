@@ -1,7 +1,7 @@
 <template>
     <div class="skills-container">
-        <skill-container v-for="skill in skills" :key="skill.name" :skillImg="skill.img" :skillName="skill.name"
-            :skillPoints="skill.points" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel)">
+        <skill-container v-for="skill in skills" :key="skill.name" :skillName="skill.name"
+            :skillPoints="skill.points" :skillCooldown="skill.cooldown" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel,skill.cooldown)">
         </skill-container>
     </div>
 </template>
@@ -21,17 +21,20 @@ export default {
 
                     name: "Skill 1",
                     points: 10,
-                    neededLevel: 1
+                    neededLevel: 1,
+                    cooldown:1
                 },
                 {
                     name: "Skill 2",
                     points: 10,
-                    neededLevel: 3
+                    neededLevel: 3,
+                    cooldown:2
                 },
                 {
                     name: "Skill 3",
                     points: 10,
-                    neededLevel: 5
+                    neededLevel: 5,
+                    cooldown:3
                 },
             ],
         }
@@ -40,20 +43,20 @@ export default {
         ...mapGetters(['getUser']),
     },
     methods: {
-        dealPoints(points) {
-            this.$emit('dealPoints', points)
+        dealPoints(points,cooldown) {
+            this.$emit('dealPoints', points,cooldown)
         },
         addHours(date, hours) {
             date.setHours(date.getHours() + hours);
 
             return date;
         },
-        isSkillActive(neededLevel) {
+        isSkillActive(neededLevel,cooldown) {
             let dateNow = new Date();
             let userTimeStamp = this.getUser.timeStamp;
             if (userTimeStamp == null)
                 userTimeStamp = new Date();
-            return this.getUser.level >= neededLevel && dateNow >= this.addHours(new Date(userTimeStamp), 1);
+            return this.getUser.level >= neededLevel && dateNow >= this.addHours(new Date(userTimeStamp), cooldown);
         }
     }
 }

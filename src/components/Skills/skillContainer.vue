@@ -8,15 +8,15 @@ import { mapGetters } from 'vuex';
 export default {
     name: "skill-container",
     props: {
-        skillImg: {
-            type: String,
-            required: true,
-        },
         skillName: {
             type: String,
             required: true,
         },
         skillPoints: {
+            type: Number,
+            required: true,
+        },
+        skillCooldown: {
             type: Number,
             required: true,
         },
@@ -28,7 +28,7 @@ export default {
     methods: {
         dealPoints() {
             if (this.active) {
-                this.$emit('dealPoints', this.skillPoints)
+                this.$emit('dealPoints', this.skillPoints,this.skillCooldown)
             }
         }
     },

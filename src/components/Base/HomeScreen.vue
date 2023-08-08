@@ -3,11 +3,13 @@
         <div class="header-container">
             <p class="logo">Level Up</p>
             <p class="title">Hi {{ getUser.name }}</p>
+            <p class="level">You're level {{ getUser.level }}</p>
         </div>
         <div class="more-info">
+
             <div class="more-info-info">
                 <p class="title">Your EXP</p>
-                <p class="info">{{ getUser.exp }} / {{ computeLevel[getUser.level] }} </p>
+                <p class="info">{{ getUser.exp }} / {{ computeLevel[getUser.level].neededExp }} </p>
             </div>
             <div class="more-info-separator"></div>
             <div class="more-info-info">
@@ -32,7 +34,7 @@
             <h3>{{ myTeamData.health + " / " + myTeamData.maxHealth }}</h3>
         </div>
         <div class="navigation-section">
-            <div class="navigation-section-item" @click="navigateTo('/Battelfield')">
+            <div class="navigation-section-item" @click="navigateTo('/Battlefield')">
                 <img v-if="getUser.role === 'ATTACKER'" src="@/assets/attack-icon.svg" alt="attack-icon">
                 <img v-if="getUser.role === 'DEFENDER'" src="@/assets/defend-icon.svg" alt="defend-icon">
                 <img v-if="getUser.role === 'HEALER'" src="@/assets/heal-icon.svg" alt="heal-icon">
@@ -61,20 +63,90 @@ export default {
         return {
             myTeamData: {},
             computeLevel: {
-                0: 20,
-                1: 25,
-                2: 35,
-                3: 50,
-                4: 70,
-                5: 95,
-                6: 125,
-                7: 155,
-                8: 200,
-                9: 250,
-                10: 300,
-                11: 350,
-                12: 350,
-                13: 350,
+                0: {
+                    neededExp: 20,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                1: {
+                    neededExp: 25,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                2: {
+                    neededExp: 35,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                3: {
+                    neededExp: 50,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                4: {
+                    neededExp: 70,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                5: {
+                    neededExp: 95,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                6: {
+                    neededExp: 125,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                7: {
+                    neededExp: 155,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                8: {
+                    neededExp: 200,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                9: {
+                    neededExp: 250,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                10: {
+                    neededExp: 300,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                11: {
+                    neededExp: 350,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                12: {
+                    neededExp: 350,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
+                13: {
+                    neededExp: 350,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                },
             }
         }
     },
@@ -113,6 +185,7 @@ export default {
     border: 1px solid #F5F5F5;
     border-radius: 6px;
     z-index: 0;
+    position: relative;
 
     &-separator {
         z-index: 3;
@@ -228,6 +301,11 @@ export default {
 
     margin-bottom: 20px;
 
+    p {
+        padding: 0;
+        margin: 0;
+    }
+
     & .logo {
         font-family: 'pressstart2p';
         color: #f4ee80;
@@ -239,5 +317,9 @@ export default {
         font-family: 'pressstart2p';
         font-size: 18px;
     }
-}
-</style>
+
+    & .level {
+        font-family: 'ptmono';
+    }
+
+}</style>

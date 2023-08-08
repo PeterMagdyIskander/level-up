@@ -34,7 +34,9 @@ import skills from '@/components/Skills/SkillsContainer.vue';
 
 export default {
     name: "attack-view",
-    computed: mapGetters(['getUser']),
+    computed: {
+        ...mapGetters(['getUser']),
+    },
     components: {
         BaseContainer,
         skills,
@@ -45,7 +47,7 @@ export default {
             enemyTeamData: {},
             myTeamData: {},
             isAttacker: true,
-            selectedTeamId: ""
+            selectedTeamId: "",
         }
     },
     created() {
@@ -97,7 +99,7 @@ export default {
 
             return date;
         },
-        dealPoints(points) {
+        dealPoints(points, cooldown) {
             if (this.selectedTeamId !== "") {
                 const firestore = getFirestore();
                 const teamCollectionReference = collection(firestore, 'teams');
@@ -109,11 +111,11 @@ export default {
                 let userTimeStamp = this.getUser.timeStamp;
                 if (userTimeStamp == null)
                     userTimeStamp = new Date();
-                if (dateNow >= this.addHours(new Date(userTimeStamp), 1)) {
+                if (dateNow >= this.addHours(new Date(userTimeStamp), cooldown)) {
                     switch (this.getUser.role) {
                         case "ATTACKER":
                             const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
-                            let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction;
+                            let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction * this.getUser.attackAmp;
                             let block = this.enemyTeamData.dmgBlock;
 
                             if (myDmg > block) {
@@ -134,13 +136,13 @@ export default {
                             break;
                         case "HEALER":
                             updateDoc(myTeamDoc, {
-                                health: increment(points),
+                                health: increment(points* this.getUser.healAmp),
                             })
                             updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                             break;
                         case "DEFENDER":
                             updateDoc(myTeamDoc, {
-                                dmgBlock: increment(points),
+                                dmgBlock: increment(points* this.getUser.blockAmp),
                             })
                             updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                             break;
