@@ -1,6 +1,7 @@
 <template>
     <div class="skill-container" @click="dealPoints" :class="{ 'inactive': !active }">
-        <h6>{{ skillName }}</h6>
+        <h6>{{ getUser.role === "ATTACKER" ? "Attack" : getUser.role === "DEFENDER" ? "Defend" : "Heal" }} {{ skillOrder + 1 }}
+        </h6>
     </div>
 </template>
 <script>
@@ -32,7 +33,7 @@ export default {
     methods: {
         dealPoints() {
             if (this.active) {
-                this.$emit('dealPoints', this.skillPoints,this.skillCooldown,this.skillOrder+1)
+                this.$emit('dealPoints', this.skillPoints, this.skillCooldown, this.skillOrder + 1)
             }
         }
     },
@@ -60,7 +61,8 @@ export default {
     }
 
 }
-.inactive{
-    opacity:0.5;
+
+.inactive {
+    opacity: 0.5;
 }
 </style>

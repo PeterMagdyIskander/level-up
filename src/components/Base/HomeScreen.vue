@@ -55,7 +55,7 @@
 
 import { mapGetters } from 'vuex';
 
-import { collection, getFirestore, onSnapshot, doc, addDoc } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, addDoc} from 'firebase/firestore';
 export default {
     name: "home-screen",
     computed: mapGetters(['getUser']),
@@ -157,6 +157,10 @@ export default {
         onSnapshot(myTeam, snapshot => {
             this.myTeamData = { ...snapshot.data() };
         })
+        
+// defenderQuests.forEach(quest => {
+//             addDoc(collection(firestore, "quests"), quest)
+//         })
     },
     methods: {
         navigateTo(to) {
@@ -322,4 +326,5 @@ export default {
         font-family: 'ptmono';
     }
 
-}</style>
+}
+</style>

@@ -1,8 +1,6 @@
 <template>
     <div>
         <QuestMoreInfo :title="'My Quest'" :quest="quest"></QuestMoreInfo>
-
-
         <div class="button-container">
             <input type="password" v-model="password">
             <button @click="submit">SUBMIT</button>
@@ -39,7 +37,7 @@ export default {
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const userDoc = doc(userCollectionReference, this.getUser.uid)
-             if (this.getUser.role === this.quest.role) {
+             if (this.getUser.role.toLowerCase() === this.quest.role.toLowerCase()) {
                 updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
             } else {
                 updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
