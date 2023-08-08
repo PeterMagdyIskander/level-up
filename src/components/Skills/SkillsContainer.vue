@@ -1,6 +1,6 @@
 <template>
     <div class="skills-container">
-        <skill-container v-for="skill in skills" :key="skill.name" :skillName="skill.name"
+        <skill-container v-for="(skill, index) in skills" :key="index" :skillName="skill.name" :skillOrder="index"
             :skillPoints="skill.points" :skillCooldown="skill.cooldown" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel,skill.cooldown)">
         </skill-container>
     </div>
@@ -43,8 +43,8 @@ export default {
         ...mapGetters(['getUser']),
     },
     methods: {
-        dealPoints(points,cooldown) {
-            this.$emit('dealPoints', points,cooldown)
+        dealPoints(points,cooldown,order) {
+            this.$emit('dealPoints', points,cooldown,order)
         },
         addHours(date, hours) {
             date.setHours(date.getHours() + hours);

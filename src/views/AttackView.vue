@@ -99,8 +99,8 @@ export default {
 
             return date;
         },
-        dealPoints(points, cooldown) {
-            if (this.selectedTeamId !== "") {
+        dealPoints(points, cooldown, order) {
+            if (this.selectedTeamId !== "" || order == 2 || order == 3) {
                 const firestore = getFirestore();
                 const teamCollectionReference = collection(firestore, 'teams');
                 const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
@@ -114,37 +114,85 @@ export default {
                 if (dateNow >= this.addHours(new Date(userTimeStamp), cooldown)) {
                     switch (this.getUser.role) {
                         case "ATTACKER":
-                            const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
-                            let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction * this.getUser.attackAmp;
-                            let block = this.enemyTeamData.dmgBlock;
+                            switch (order) {
+                                case 1:
+                                    const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
+                                    let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction * this.getUser.attackAmp;
+                                    let block = this.enemyTeamData.dmgBlock;
 
-                            if (myDmg > block) {
-                                myDmg = (myDmg - block) * -1;
-                                block *= -1;
-                            } else if (myDmg < block) {
-                                block = myDmg * -1;
-                                myDmg = 0;
-                            } else {
-                                block = myDmg * -1
-                                myDmg = 0;
+                                    if (myDmg > block) {
+                                        myDmg = (myDmg - block) * -1;
+                                        block *= -1;
+                                    } else if (myDmg < block) {
+                                        block = myDmg * -1;
+                                        myDmg = 0;
+                                    } else {
+                                        block = myDmg * -1
+                                        myDmg = 0;
+                                    }
+                                    updateDoc(enemyTeamDoc, {
+                                        health: increment(myDmg),
+                                        dmgBlock: increment(block),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 2:
+                                    updateDoc(myTeamDoc, {
+                                        dmgMultiplier: increment(0.1),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 3:
+                                    updateDoc(myTeamDoc, {
+                                        combo: increment(1)
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
                             }
-                            updateDoc(enemyTeamDoc, {
-                                health: increment(myDmg),
-                                dmgBlock: increment(block),
-                            })
-                            updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                             break;
                         case "HEALER":
-                            updateDoc(myTeamDoc, {
-                                health: increment(points* this.getUser.healAmp),
-                            })
-                            updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                            switch (order) {
+                                case 1:
+                                    updateDoc(myTeamDoc, {
+                                        health: increment(points * this.getUser.healAmp),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 2:
+                                    updateDoc(myTeamDoc, {
+                                        healMultiplier: increment(0.1),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 3:
+                                    updateDoc(myTeamDoc, {
+                                        combo: increment(1)
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                            }
                             break;
                         case "DEFENDER":
-                            updateDoc(myTeamDoc, {
-                                dmgBlock: increment(points* this.getUser.blockAmp),
-                            })
-                            updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                            switch (order) {
+                                case 1:
+                                    updateDoc(myTeamDoc, {
+                                        dmgBlock: increment(points * this.getUser.blockAmp),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 2:
+                                    updateDoc(myTeamDoc, {
+                                        blockMultiplier: increment(0.1),
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                                case 3:
+                                    updateDoc(myTeamDoc, {
+                                        combo: increment(1)
+                                    })
+                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    break;
+                            }
                             break;
                     }
                 } else {
