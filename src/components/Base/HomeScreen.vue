@@ -163,10 +163,6 @@ export default {
         onSnapshot(myTeam, snapshot => {
             this.myTeamData = { ...snapshot.data() };
         })
-        
-// defenderQuests.forEach(quest => {
-//             addDoc(collection(firestore, "quests"), quest)
-//         })
     },
     methods: {
         navigateTo(to) {
