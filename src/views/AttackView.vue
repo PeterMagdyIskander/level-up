@@ -149,9 +149,17 @@ export default {
                             switch (order) {
                                 case 1:
                                 case 3:
-                                    updateDoc(myTeamDoc, {
-                                        health: increment(points * this.getUser.healAmp),
-                                    })
+                                    if (this.myTeamData.maxHealth === this.myTeamData.health) {
+                                        updateDoc(myTeamDoc, {
+                                            health: increment(points * this.getUser.healAmp),
+                                            maxHealth: increment(points * this.getUser.healAmp),
+                                        })
+                                    } else {
+                                        updateDoc(myTeamDoc, {
+                                            health: increment(points * this.getUser.healAmp),
+                                        })
+                                    }
+
                                     updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                                     break;
                                 case 2:
