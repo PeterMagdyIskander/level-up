@@ -307,6 +307,10 @@ export default createStore({
                 role: "Healer",
                 team: "Astro"
               },
+              "mafdy.boles55@gmail.com": {
+                role: "HEALER",
+                team: "Dynamis"
+              },
               "petermagdyiskander@gmail.com": {
                 role: "HEALER",
                 team: "Dynamis"
@@ -507,7 +511,7 @@ export default createStore({
             }
           })
         }
-        
+
         commit('setFailed', false)
       }).catch(err => {
         console.error(err)
