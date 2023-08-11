@@ -331,11 +331,22 @@ export default createStore({
                 role: "ADMIN",
                 team: "ADMIN"
               },
-              "samehsamir2017@gmail.co": {
+              "samehsamir2017@gmail.com": {
                 role: "ADMIN",
                 team: "ADMIN"
               },
-
+              "samehsamir2017@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "samehsamir2017@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "andrewsamaan64@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
             }
             setDoc(doc(firestore, "users", res.user.uid), {
               assignedQuestId: "",

@@ -63,16 +63,13 @@ div {
 
 .drop-down {
     height: 300px;
-
+    
     &-item {
         width: 100%;
-        height: 30px;
         padding: 5px;
         margin: 5px;
-        color: #f4ee80;
-        font-size: 1rem;
-        text-shadow: 0 2px #a14759;
-        font-family: 'pressstart2p';
+        font-size: 14px;
+        font-family: 'ptmono';
     }
 }
 </style>

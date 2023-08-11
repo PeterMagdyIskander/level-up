@@ -34,18 +34,22 @@ export default {
     methods: {
         ...mapActions(['updateUser']),
         submit() {
-            const firestore = getFirestore();
-            const userCollectionReference = collection(firestore, 'users');
-            const userDoc = doc(userCollectionReference, this.getUser.uid)
-             if (this.getUser.role.toLowerCase() === this.quest.role.toLowerCase()) {
-                updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
+            if (this.password.length >= 12) {
+                const firestore = getFirestore();
+                const userCollectionReference = collection(firestore, 'users');
+                const userDoc = doc(userCollectionReference, this.getUser.uid)
+                if (this.getUser.role.toLowerCase() === this.quest.role.toLowerCase()) {
+                    updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
+                } else {
+                    updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
+                }
+                let updatedUser = this.getUser;
+                updatedUser.assignedQuestId = "";
+                this.updateUser(updatedUser);
+                router.push("/QuestCenter")
             } else {
-                updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
+                alert("please enter the correct password")
             }
-            let updatedUser = this.getUser;
-            updatedUser.assignedQuestId = "";
-            this.updateUser(updatedUser);
-            router.push("/QuestCenter")
 
         }
     }
