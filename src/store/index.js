@@ -300,9 +300,42 @@ export default createStore({
                 team: "Astro"
               },
               "petermagdyiskander@gmail.com": {
-                role: "Attacker",
-                team: "Dynamis"
-              }
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "sheridan.badie@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "shady.m.louis@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "nardin.youssef2016@feps.edu.eg": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "sandywilliam119@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "bassem.m.louis@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "peter.r.naoum@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "nadine.amir99@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+              "samehsamir2017@gmail.co": {
+                role: "ADMIN",
+                team: "ADMIN"
+              },
+
             }
             setDoc(doc(firestore, "users", res.user.uid), {
               assignedQuestId: "",
@@ -436,7 +469,6 @@ export default createStore({
               uid: res.user.uid
               , ...data
             }
-            console.error(user)
             if (user.level != null) {
               if (user.exp >= computeLevel[user.level].neededExp) {
                 shouldLevelUp = true;
@@ -449,7 +481,7 @@ export default createStore({
           })
         }
       }).catch(err => {
-
+        console.error(err)
       })
     },
     updateUser({ commit }, user) {
