@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="signIn">
-      {{ getLoading ? "Loading..." : getFailed ? "Please refresh!" : "Start Game" }}
+      {{ getLoading ? "Loading..." : (getFailed ? "Please refresh!" : "Start Game") }}
     </button>
   </div>
 </template>
