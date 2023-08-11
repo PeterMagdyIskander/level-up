@@ -55,7 +55,7 @@
 
 import { mapGetters } from 'vuex';
 
-import { collection, getFirestore, onSnapshot, doc, addDoc} from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, addDoc } from 'firebase/firestore';
 export default {
     name: "home-screen",
     computed: mapGetters(['getUser']),
@@ -147,7 +147,7 @@ export default {
                     healAmp: 0.5,
                     blockAmp: 0.5
                 },
-                14:{
+                14: {
                     neededExp: 35000000,
                     attackAmp: 0.5,
                     healAmp: 0.5,
@@ -163,12 +163,12 @@ export default {
         onSnapshot(myTeam, snapshot => {
             this.myTeamData = { ...snapshot.data() };
         })
-    },
-    methods: {
-        navigateTo(to) {
-            this.$router.push(to);
-        }
+},
+methods: {
+    navigateTo(to) {
+        this.$router.push(to);
     }
+}
 }
 </script>
 

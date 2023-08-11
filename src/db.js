@@ -51,6 +51,66 @@ let quest = {
 
 let allQuests = [
 
+    
+    {
+        title: "o3'neya 3an el mo2tamar",
+        description: "Gama3 defender men kol team w work together and make a song 3an el mo2tamar... use asamy nas aw 7agat 7asalet we can relate to...",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
+
+    {
+        title: "cover l tarneema",
+        description: "mehtaga enak tela2y 7ad beye3zef aw bey3'any w te3mel ma3ah performance 7ata law mabte3rafsh te3'any aw te3zef, find a creative way to make a performance and make a video of it then show it l qa2ed",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
+
+    {
+        title: "Interview Video: qada boy and girl ",
+        description: "Dawar 3ala qa2ed walad w 1a2eda. as3'ar menak fel sen w ba3deen e3mel video wenta betes2alo el hagat deeh: 1- 2oly 3 hagat interesting 3anak. 2- eh aktar haga bet7eb te3melha for fun. 3- what was the first impression you had about me.",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
+
+    {
+        title: "Level Up bingo",
+        description: "Es2al 7ad men el qada 3ala wara2et bingo w dawar 3ala 7ad mo5talef l kol sefa w 5aleeh yemdy le3'ayet mat2afel saf kamel w roo7 wareeha l qa2ed 3ashan yeda5al el points",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
+
+    {
+        title: "Attacker X Defender",
+        description: "Etefe2 ma3 attacker men team tany eno yesa3dak te3melo 50 squats. + 30 batn ",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
+
+    {
+        title: "How well do you know your friend",
+        description: "Gaweb 3ala el 7 as2ela hayes2alhalak el qa2ed 3an nafsak, e5tar 7ad sa7bak awii 5aleeh yegaweb el 7 as2ela 3aleek, lazem 5 menhom sah (you both get the points) ",
+        gold: 25,
+        exp: 25,
+        difficulty: 3,
+        role: "defender",
+        assignedTo: [],
+    },
     {
         title: "Seba7a laps",
         description: "Mara raye7 rage3",
@@ -72,8 +132,8 @@ let allQuests = [
     {
         title: "Seba7a laps",
         description: "Talat marat raye7 rage3",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -99,8 +159,8 @@ let allQuests = [
     {
         title: "Gary",
         description: "Mal3ab el kora set lafat",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -116,7 +176,7 @@ let allQuests = [
     },
     {
         title: "Da3't",
-        description: "20 da3't",
+        description: "25 da3't",
         gold: 15,
         exp: 15,
         difficulty: 2,
@@ -126,15 +186,15 @@ let allQuests = [
     {
         title: "Da3't",
         description: "40 da3't",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
     },
     {
         title: "Batn",
-        description: "20 batn",
+        description: "25 batn",
         gold: 10,
         exp: 10,
         difficulty: 1,
@@ -153,8 +213,8 @@ let allQuests = [
     {
         title: "Batn",
         description: "40 batn",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -180,8 +240,8 @@ let allQuests = [
     {
         title: "Squats",
         description: "60 squats",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -261,8 +321,8 @@ let allQuests = [
     {
         title: "3o2la",
         description: "15 3o2la",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -305,7 +365,7 @@ let allQuests = [
     },
     {
         title: "Shikabala",
-        description: "Natat el kora 20 mara",
+        description: "Natat el kora 25 mara",
         gold: 15,
         exp: 15,
         difficulty: 1,
@@ -351,8 +411,8 @@ let allQuests = [
     {
         title: "SUIIIIIII",
         description: "Natat el kora 3ala rasak 15 mara",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -404,9 +464,9 @@ let allQuests = [
     },
     {
         title: "Biceps curls (10 kilo)",
-        description: "20 reps",
-        gold: 20,
-        exp: 20,
+        description: "25 reps",
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -431,9 +491,9 @@ let allQuests = [
     },
     {
         title: "Shoulder lateral press (10 kilo)",
-        description: "20 reps",
-        gold: 20,
-        exp: 20,
+        description: "25 reps",
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -458,9 +518,9 @@ let allQuests = [
     },
     {
         title: "Deadlift (25 kilo)",
-        description: "20 reps",
-        gold: 20,
-        exp: 20,
+        description: "25 reps",
+        gold: 25,
+        exp: 25,
         difficulty: 3,
         role: "attacker",
         assignedTo: [],
@@ -477,8 +537,8 @@ let allQuests = [
     {
         title: "9 esta3ed",
         description: "El mal3ab mariteen bel 3ard",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "attacker",
         assignedTo: [],
@@ -530,9 +590,9 @@ let allQuests = [
     },
     {
         title: "Bench press (12.5 kilo)",
-        description: "20 reps",
-        gold: 20,
-        exp: 20,
+        description: "25 reps",
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "attacker",
         assignedTo: [],
@@ -828,8 +888,8 @@ let allQuests = [
     {
         title: "El rakam el sery",
         description: "Password challenge?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -837,8 +897,8 @@ let allQuests = [
     {
         title: "Youssef Ya32oub",
         description: "2e2ra resalet ya32oub kolaha ma3 ka2ed?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -846,8 +906,8 @@ let allQuests = [
     {
         title: "Agmad Sefr (Ra2y Peter Magdy)",
         description: "Talat mo3gezat fi sefr you7ana bas?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -855,8 +915,8 @@ let allQuests = [
     {
         title: "El talat anagil",
         description: "Talat mo3gezat fi asfar (Matta, Mor2os, Luka)",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -864,8 +924,8 @@ let allQuests = [
     {
         title: "Luka",
         description: "5 amthal men amthal el masi7 fi Luka bas?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -873,8 +933,8 @@ let allQuests = [
     {
         title: "Matta",
         description: "3 amthal men amthal el masi7 fi Matta bas?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -882,8 +942,8 @@ let allQuests = [
     {
         title: "7 kanayes",
         description: "Ekteb molakhas resaltin men rasayel el kanayes el sab3a el fi sefr el ro2ya?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -891,8 +951,8 @@ let allQuests = [
     {
         title: "XO",
         description: "Eksab best XO ma3 ka2ed fi 7agat fel ketab el mokadas?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -900,8 +960,8 @@ let allQuests = [
     {
         title: "30 sanya mamno3at",
         description: "Ta7ady el talatin sanya",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -909,8 +969,8 @@ let allQuests = [
     {
         title: "30 fel 3ahd el adim",
         description: "Ekteb 5 ayat fi el 3ahd el adim fi 30 sanya",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -918,8 +978,8 @@ let allQuests = [
     {
         title: "30 fel 3ahd el gedid",
         description: "Ekteb 5 ayat fi el 3ahd el gedid fi 30 sanya",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -927,8 +987,8 @@ let allQuests = [
     {
         title: "5 ma3lomat",
         description: "5 ma3lomat 3an skakhsya ketabya",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -936,8 +996,8 @@ let allQuests = [
     {
         title: "Akmel",
         description: "kamel el aya",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -945,8 +1005,8 @@ let allQuests = [
     {
         title: "El 7ob el 7ob, el shoo2 el shoo2",
         description: "e7faz koronthos el ola 13",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -954,8 +1014,8 @@ let allQuests = [
     {
         title: "3afya zoo2",
         description: "Oool 5 kesas setat 3amalo far2 fel ketab el mokadas?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -963,8 +1023,8 @@ let allQuests = [
     {
         title: "1000 set + ?",
         description: "Meen katab Amthal ma3 Soliman?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -972,8 +1032,8 @@ let allQuests = [
     {
         title: "El mamlaka el mota7ida el esra2ilya",
         description: "Ekteb molakhas keset enkisam el mamlaka?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -981,8 +1041,8 @@ let allQuests = [
     {
         title: "El masi7 kam",
         description: "Ekteb kesa 3an yasou3 ba3d el keyama?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -990,8 +1050,8 @@ let allQuests = [
     {
         title: "Ektebaas",
         description: "Ool ektbas men el 3ahd el adim fel gedid msh fi el anagil?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -999,8 +1059,8 @@ let allQuests = [
     {
         title: "Ektebaas",
         description: "Ool ektbas men el 3ahd el adim fel gedid msh fi el anagil?",
-        gold: 20,
-        exp: 20,
+        gold: 25,
+        exp: 25,
         difficulty: 2,
         role: "healer",
         assignedTo: [],
@@ -1310,7 +1370,7 @@ let allQuests = [
 
 
 let user = {
-    "evan20012@gmail.com": {
+    "evan25012@gmail.com": {
         role: "Attacker",
         team: "Dynamis"
     },
@@ -1358,7 +1418,7 @@ let user = {
         role: "Attacker",
         team: "Lumos"
     },
-    "lodymarcos2005@gmail.com": {
+    "lodymarcos2505@gmail.com": {
         role: "Attacker",
         team: "Lumos"
     },
@@ -1406,7 +1466,7 @@ let user = {
         role: "Defender",
         team: "Lumos"
     },
-    "sarahsherif2002@gmail.com": {
+    "sarahsherif2502@gmail.com": {
         role: "Defender",
         team: "Lumos"
     },
@@ -1502,7 +1562,7 @@ let user = {
         role: "Defender",
         team: "Astro"
     },
-    "Markdoha2017@gmail.com": {
+    "Markdoha2517@gmail.com": {
         role: "Attacker",
         team: "Astro"
     },
