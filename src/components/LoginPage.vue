@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="signIn">
-      {{ getLoading ? "Loading..." : "Start Game" }}
+      {{ getLoading ? "Loading..." : getFailed ? "Please refresh!" : "Start Game" }}
     </button>
   </div>
 </template>
@@ -10,11 +10,11 @@
 import { mapActions, mapGetters } from 'vuex';
 export default {
   name: "LoginPage",
-  computed: mapGetters(['getUser', 'getQuests','getLoading', mapActions]),
+  computed: mapGetters(['getUser', 'getQuests', 'getLoading', 'getFailed', mapActions]),
   methods: {
     ...mapActions(['login', 'setQuests']),
     signIn() {
-      if(!this.getLoading){
+      if (!this.getLoading) {
         this.login();
         this.setQuests();
       }
@@ -27,6 +27,7 @@ export default {
 div {
   text-align: center;
   padding: 250px 0;
+
   button {
     all: unset;
     font-family: 'pressstart2p';

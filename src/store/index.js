@@ -6,16 +6,19 @@ export default createStore({
     user: null,
     quests: [],
     loading: false,
+    failed: false,
   },
   getters: {
     getUser: (state) => state.user,
     getQuests: (state) => state.quests,
-    getLoading: (state) => state.loading
+    getLoading: (state) => state.loading,
+    getFailed: (state) => state.failed
   },
   mutations: {
     setUser: (state, user) => (state.user = user),
     setQuests: (state, quests) => (state.quests = quests),
-    setLoading: (state, loading) => (state.loading = loading)
+    setLoading: (state, loading) => (state.loading = loading),
+    setFailed: (state, failed) => (state.failed = failed)
   },
   actions: {
     login({ commit }) {
@@ -505,6 +508,7 @@ export default createStore({
         }
       }).catch(err => {
         console.error(err)
+        commit('setFailed', true)
       }).finally(() =>
         commit('setLoading', false))
     },
