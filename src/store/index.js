@@ -304,7 +304,6 @@ export default createStore({
                 team: "Dynamis"
               }
             }
-            console.log(res.user.email)
             setDoc(doc(firestore, "users", res.user.uid), {
               assignedQuestId: "",
               attackAmp: 1,
@@ -312,7 +311,7 @@ export default createStore({
               healAmp: 1,
               exp: 0,
               gold: 0,
-              level: 0,
+              level: 1,
               name: res.user.displayName,
               role: userDB[res.user.email].role.toUpperCase(),
               teamId: userDB[res.user.email].team,
@@ -326,7 +325,7 @@ export default createStore({
               healAmp: 1,
               exp: 0,
               gold: 0,
-              level: 0,
+              level: 1,
               name: res.user.displayName,
               role: userDB[res.user.email].role.toUpperCase(),
               teamId: userDB[res.user.email].team,
@@ -338,6 +337,7 @@ export default createStore({
         if (!newUser) {
           const userDoc = doc(userCollectionReference, res.user.uid)
           onSnapshot(userDoc, snapshot => {
+
             let computeLevel = {
               0: {
                 neededExp: 20,
@@ -436,17 +436,20 @@ export default createStore({
               uid: res.user.uid
               , ...data
             }
-            if (user.exp >= computeLevel[user.level].neededExp) {
-              shouldLevelUp = true;
-              nextLevel = user.level + 1;
-              nextExp = user.exp - computeLevel[user.level].neededExp;
-              updateDoc(userDoc, { level: nextLevel, exp: nextExp, healAmp: increment(computeLevel[user.level].healAmp), blockAmp: increment(computeLevel[user.level].blockAmp), attackAmp: increment(computeLevel[user.level].attackAmp) })
+            console.error(user)
+            if (user.level != null) {
+              if (user.exp >= computeLevel[user.level].neededExp) {
+                shouldLevelUp = true;
+                nextLevel = user.level + 1;
+                nextExp = user.exp - computeLevel[user.level].neededExp;
+                updateDoc(userDoc, { level: nextLevel, exp: nextExp, healAmp: increment(computeLevel[user.level].healAmp), blockAmp: increment(computeLevel[user.level].blockAmp), attackAmp: increment(computeLevel[user.level].attackAmp) })
+              }
+              commit('setUser', user)
             }
-            commit('setUser', user)
           })
         }
       }).catch(err => {
-        console.log(err)
+
       })
     },
     updateUser({ commit }, user) {
