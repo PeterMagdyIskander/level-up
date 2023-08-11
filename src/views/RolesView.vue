@@ -34,7 +34,7 @@
         </div>
         <div class="skills" v-for="(skill, index) in skills" :key="index">
             <p class="skills-title">Skill {{ index + 1 }} <span>unlocked at level {{ skill.neededLevel }}</span></p>
-            <p class="skills-desc"> what is does: {{ skill.desc }}</p>
+            <p class="skills-desc"> what it does: {{ skill.desc }}</p>
         </div>
         <div class="img-container">
             <img class="levelup-img" src="@/assets/levelup-icon.svg" alt="dynamis planet">
@@ -62,43 +62,43 @@ export default {
             healerSkills: [
                 {
                     neededLevel: 1,
-                    desc: "lorem20"
+                    desc: "Heal (10 * healMultiplier) damage"
                 },
                 {
                     neededLevel: 3,
-                    desc: "lorem20"
+                    desc: "Increase heal amplificaiton by 0.1 for the whole team (stackable)"
                 },
                 {
-                    neededLevel: 5,
-                    desc: "lorem20"
+                    neededLevel: 9,
+                    desc: "Heal (50 * healMultiplier) damage"
                 }
             ],
             defenderSkills: [
                 {
                     neededLevel: 1,
-                    desc: "lorem20"
+                    desc: "Increase block by (10 * blockMultiplier) points"
                 },
                 {
                     neededLevel: 3,
-                    desc: "lorem20"
+                    desc: "Increase block amplificaiton by 0.1 for the whole team (stackable)"
                 },
                 {
-                    neededLevel: 5,
-                    desc: "lorem20"
+                    neededLevel: 9,
+                    desc: "Increase block by (50 * blockMultiplier) points"
                 }
             ],
             attackerSkills: [
-                {
+            {
                     neededLevel: 1,
-                    desc: "lorem20"
+                    desc: "Deal (10 * dmgMultiplier) damage"
                 },
                 {
                     neededLevel: 3,
-                    desc: "lorem20"
+                    desc: "Increase damage amplificaiton by 0.1 for the whole team (stackable)"
                 },
                 {
-                    neededLevel: 5,
-                    desc: "lorem20"
+                    neededLevel: 9,
+                    desc: "Deal (50 * dmgMultiplier) damage"
                 }
             ],
             showingRole: "Defender"

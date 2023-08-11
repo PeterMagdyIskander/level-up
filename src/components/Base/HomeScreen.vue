@@ -147,6 +147,12 @@ export default {
                     healAmp: 0.5,
                     blockAmp: 0.5
                 },
+                14:{
+                    neededExp: 35000000,
+                    attackAmp: 0.5,
+                    healAmp: 0.5,
+                    blockAmp: 0.5
+                }
             }
         }
     },

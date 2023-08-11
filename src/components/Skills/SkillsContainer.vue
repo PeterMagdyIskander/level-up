@@ -32,9 +32,9 @@ export default {
                 },
                 {
                     name: "Skill 3",
-                    points: 10,
-                    neededLevel: 5,
-                    cooldown:3
+                    points: 50,
+                    neededLevel: 10,
+                    cooldown:5
                 },
             ],
         }
@@ -56,7 +56,7 @@ export default {
             let userTimeStamp = this.getUser.timeStamp;
             if (userTimeStamp == null)
                 userTimeStamp = new Date();
-            return this.getUser.level >= neededLevel && dateNow >= this.addHours(new Date(userTimeStamp), cooldown);
+            return this.getUser.level >= neededLevel && dateNow > this.addHours(new Date(userTimeStamp), cooldown);
         }
     }
 }

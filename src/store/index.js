@@ -41,7 +41,7 @@ export default createStore({
               name: res.user.displayName,
               role: "HEALER",
               teamId: "Dynamis",
-              timeStamp: new Date().toISOString(),
+              timeStamp: "2023-08-09T18:05:35.146Z",
             }, { merge: true });
             let user = {
               uid: res.user.uid,
@@ -55,7 +55,7 @@ export default createStore({
               name: res.user.displayName,
               role: "HEALER",
               teamId: "Dynamis",
-              timeStamp: new Date().toISOString(),
+              timeStamp: "2023-08-09T18:05:35.146Z",
             }
             commit('setUser', user)
           }
@@ -148,6 +148,12 @@ export default createStore({
                 healAmp: 0.5,
                 blockAmp: 0.5
               },
+              14:{
+                neededExp: 35000000,
+                attackAmp: 0.5,
+                healAmp: 0.5,
+                blockAmp: 0.5
+            }
             }
 
             const data = snapshot.data();

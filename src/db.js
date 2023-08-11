@@ -49,7 +49,8 @@ let quest = {
 }
 
 
-let attackerQuests=[
+let allQuests=[
+    
     {
         title:"Seba7a laps",
         description:"Mara raye7 rage3",
@@ -545,10 +546,6 @@ let attackerQuests=[
         role:"attacker",
         assignedTo:[], 
     },
-]
-
-
-let healerQuests=[
     {
         title:"Kan as3'ar ra3i dawood",
         description:"E7faz mazmoor 1",
@@ -1036,15 +1033,86 @@ let healerQuests=[
         assignedTo:[], 
     },
     {
-        title:"Fala7",
-        description:"E7ky masal el zare3 beshakl mo3aser?",
+        title:"Etkhayel",
+        description:"Ektb kesa takhayolya leshakhsya ma3 yasou3 msh maktoba fel ketab el mokadas?",
         gold:30,
         exp:30,
         difficulty:3,
         role:"healer",
         assignedTo:[], 
     },
-
+    {
+        title:"Youssef",
+        description:"Ektb molakhas 3an 7aya youssef fi 2 paragraphs?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"Daniel",
+        description:"Ektb molakhas 3an 7aya daniel fi 2 paragraphs?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"Tarkeeez",
+        description:"Lakhas wa3za men wa3azat el mo2tamar fi wara2a bel ketir?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"3azama 3ala el gabal",
+        description:"Eh aktar mawadi3 men el maw3eza 3ala el gaba Ya32oob etkalem 3anha fel resala?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"Asteer",
+        description:"Ektb molakhas 3an 7aya Asteer fi 2 paragraphs?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"Genesis",
+        description:"Ektb kesa men sefr el takween?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"A3mal",
+        description:"Ektb kesa men sefr a3mal el rosol?",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
+    {
+        title:"Ya32oub 2",
+        description:"Lakhas et3alemt eh men resalet Ya32oub",
+        gold:30,
+        exp:30,
+        difficulty:3,
+        role:"healer",
+        assignedTo:[], 
+    },
 ]
 
 let defenderQuests=[

@@ -116,6 +116,7 @@ export default {
                         case "ATTACKER":
                             switch (order) {
                                 case 1:
+                                case 3:
                                     const enemyTeamDoc = doc(teamCollectionReference, this.selectedTeamId)
                                     let myDmg = points * this.myTeamData.dmgMultiplier * this.enemyTeamData.dmgReduction * this.getUser.attackAmp;
                                     let block = this.enemyTeamData.dmgBlock;
@@ -142,17 +143,12 @@ export default {
                                     })
                                     updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                                     break;
-                                case 3:
-                                    updateDoc(myTeamDoc, {
-                                        combo: increment(1)
-                                    })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                                    break;
                             }
                             break;
                         case "HEALER":
                             switch (order) {
                                 case 1:
+                                case 3:
                                     updateDoc(myTeamDoc, {
                                         health: increment(points * this.getUser.healAmp),
                                     })
@@ -164,17 +160,12 @@ export default {
                                     })
                                     updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                                     break;
-                                case 3:
-                                    updateDoc(myTeamDoc, {
-                                        combo: increment(1)
-                                    })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                                    break;
                             }
                             break;
                         case "DEFENDER":
                             switch (order) {
                                 case 1:
+                                case 3:
                                     updateDoc(myTeamDoc, {
                                         dmgBlock: increment(points * this.getUser.blockAmp),
                                     })
@@ -183,12 +174,6 @@ export default {
                                 case 2:
                                     updateDoc(myTeamDoc, {
                                         blockMultiplier: increment(0.1),
-                                    })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
-                                    break;
-                                case 3:
-                                    updateDoc(myTeamDoc, {
-                                        combo: increment(1)
                                     })
                                     updateDoc(userDoc, { timeStamp: new Date().toISOString() })
                                     break;
