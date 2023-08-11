@@ -1,23 +1,23 @@
 <template>
   <div>
     <button @click="signIn">
-      Start Game
+      {{ getLoading ? "Loading..." : "Start Game" }}
     </button>
   </div>
 </template>
 
 <script>
-import router from '@/router';
-
 import { mapActions, mapGetters } from 'vuex';
 export default {
   name: "LoginPage",
-  computed: mapGetters(['getUser', 'getQuests', mapActions]),
+  computed: mapGetters(['getUser', 'getQuests','getLoading', mapActions]),
   methods: {
     ...mapActions(['login', 'setQuests']),
     signIn() {
-      this.login();
-      this.setQuests();
+      if(!this.getLoading){
+        this.login();
+        this.setQuests();
+      }
     }
   },
 };

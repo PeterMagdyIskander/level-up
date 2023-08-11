@@ -1,7 +1,7 @@
 <template>
     <div class="skills-container">
         <skill-container v-for="(skill, index) in skills" :key="index" :skillName="skill.name" :skillOrder="index"
-            :skillPoints="skill.points" :skillCooldown="skill.cooldown" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel,skill.cooldown)">
+            :skillPoints="skill.points" :skillCooldown="skill.cooldown" @dealPoints="dealPoints" :active="isSkillActive(skill.neededLevel,skill.cooldown,index)">
         </skill-container>
     </div>
 </template>
@@ -51,11 +51,9 @@ export default {
 
             return date;
         },
-        isSkillActive(neededLevel,cooldown) {
+        isSkillActive(neededLevel,cooldown,index) {
             let dateNow = new Date();
-            let userTimeStamp = this.getUser.timeStamp;
-            if (userTimeStamp == null)
-                userTimeStamp = new Date();
+            let userTimeStamp = this.getUser.timeStamp[index];
             return this.getUser.level >= neededLevel && dateNow > this.addHours(new Date(userTimeStamp), cooldown);
         }
     }

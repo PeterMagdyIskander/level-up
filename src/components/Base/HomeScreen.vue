@@ -58,100 +58,100 @@ import { mapGetters } from 'vuex';
 import { collection, getFirestore, onSnapshot, doc, addDoc } from 'firebase/firestore';
 export default {
     name: "home-screen",
-    computed: mapGetters(['getUser']),
+    computed: mapGetters(['getUser','getLoading']),
     data() {
         return {
             myTeamData: {},
             computeLevel: {
                 0: {
                     neededExp: 20,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 1: {
                     neededExp: 25,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 2: {
                     neededExp: 35,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 3: {
                     neededExp: 50,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 4: {
                     neededExp: 70,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 5: {
                     neededExp: 95,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 6: {
                     neededExp: 125,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 7: {
                     neededExp: 155,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 8: {
                     neededExp: 200,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 9: {
                     neededExp: 250,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 10: {
                     neededExp: 300,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 11: {
                     neededExp: 350,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 12: {
                     neededExp: 350,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 13: {
                     neededExp: 350,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 },
                 14: {
                     neededExp: 35000000,
-                    attackAmp: 0.5,
-                    healAmp: 0.5,
-                    blockAmp: 0.5
+                    attackAmp: 0.1,
+                    healAmp: 0.1,
+                    blockAmp: 0.1
                 }
             }
         }

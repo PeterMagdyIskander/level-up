@@ -1,11 +1,10 @@
 <template>
     <div>
         <QuestMoreInfo :title="'My Quest'" :quest="quest"></QuestMoreInfo>
-        <div class="button-container">
+        <div class="button-container" v-if="quest">
             <input type="password" v-model="password">
             <button @click="submit">SUBMIT</button>
         </div>
-
     </div>
 </template>
 
@@ -23,7 +22,7 @@ export default {
     },
     data() {
         return {
-            quest: {},
+            quest: null,
 
             password: ""
         }

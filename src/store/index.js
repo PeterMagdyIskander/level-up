@@ -5,17 +5,21 @@ export default createStore({
   state: {
     user: null,
     quests: [],
+    loading: false,
   },
   getters: {
     getUser: (state) => state.user,
-    getQuests: (state) => state.quests
+    getQuests: (state) => state.quests,
+    getLoading: (state) => state.loading
   },
   mutations: {
     setUser: (state, user) => (state.user = user),
-    setQuests: (state, quests) => (state.quests = quests)
+    setQuests: (state, quests) => (state.quests = quests),
+    setLoading: (state, loading) => (state.loading = loading)
   },
   actions: {
     login({ commit }) {
+      commit('setLoading', false)
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider).then(res => {
         let shouldLevelUp = false;
@@ -279,7 +283,7 @@ export default createStore({
                 role: "Defender",
                 team: "Kalos"
               },
-              "johnkokiraafat@gmail.com": {
+              "johnkokyraafat@gmail.com": {
                 role: "Attacker",
                 team: "Kalos"
               },
@@ -300,8 +304,8 @@ export default createStore({
                 team: "Astro"
               },
               "petermagdyiskander@gmail.com": {
-                role: "ADMIN",
-                team: "ADMIN"
+                role: "HEALER",
+                team: "Dynamis"
               },
               "sheridan.badie@gmail.com": {
                 role: "ADMIN",
@@ -359,7 +363,11 @@ export default createStore({
               name: res.user.displayName,
               role: userDB[res.user.email].role.toUpperCase(),
               teamId: userDB[res.user.email].team,
-              timeStamp: "2023-08-09T18:05:35.146Z",
+              timeStamp: [
+                "2023-08-09T18:05:35.146Z",
+                "2023-08-09T18:05:35.146Z",
+                "2023-08-09T18:05:35.146Z"
+              ],
             }, { merge: true });
             let user = {
               uid: res.user.uid,
@@ -373,7 +381,11 @@ export default createStore({
               name: res.user.displayName,
               role: userDB[res.user.email].role.toUpperCase(),
               teamId: userDB[res.user.email].team,
-              timeStamp: "2023-08-09T18:05:35.146Z",
+              timeStamp: [
+                "2023-08-09T18:05:35.146Z",
+                "2023-08-09T18:05:35.146Z",
+                "2023-08-09T18:05:35.146Z"
+              ],
             }
             commit('setUser', user)
           }
@@ -385,93 +397,93 @@ export default createStore({
             let computeLevel = {
               0: {
                 neededExp: 20,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               1: {
                 neededExp: 25,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               2: {
                 neededExp: 35,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               3: {
                 neededExp: 50,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               4: {
                 neededExp: 70,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               5: {
                 neededExp: 95,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               6: {
                 neededExp: 125,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               7: {
                 neededExp: 155,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               8: {
                 neededExp: 200,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               9: {
                 neededExp: 250,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               10: {
                 neededExp: 300,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               11: {
                 neededExp: 350,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               12: {
                 neededExp: 350,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               13: {
                 neededExp: 350,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               },
               14: {
                 neededExp: 35000000,
-                attackAmp: 0.5,
-                healAmp: 0.5,
-                blockAmp: 0.5
+                attackAmp: 0.1,
+                healAmp: 0.1,
+                blockAmp: 0.1
               }
             }
 
@@ -493,7 +505,8 @@ export default createStore({
         }
       }).catch(err => {
         console.error(err)
-      })
+      }).finally(() =>
+        commit('setLoading', true))
     },
     updateUser({ commit }, user) {
       commit('setUser', user);

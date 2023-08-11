@@ -108,9 +108,8 @@ export default {
                 const userDoc = doc(userCollectionReference, this.getUser.uid)
 
                 let dateNow = new Date();
-                let userTimeStamp = this.getUser.timeStamp;
-                if (userTimeStamp == null)
-                    userTimeStamp = new Date();
+                let userTimeStamp = this.getUser.timeStamp[order - 1];
+                let newTimeStamp=this.getUser.timeStamp;
                 if (dateNow >= this.addHours(new Date(userTimeStamp), cooldown)) {
                     switch (this.getUser.role) {
                         case "ATTACKER":
@@ -135,13 +134,17 @@ export default {
                                         health: increment(myDmg),
                                         dmgBlock: increment(block),
                                     })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                                 case 2:
                                     updateDoc(myTeamDoc, {
                                         dmgMultiplier: increment(0.1),
                                     })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                             }
                             break;
@@ -149,7 +152,7 @@ export default {
                             switch (order) {
                                 case 1:
                                 case 3:
-                                    if (this.myTeamData.maxHealth === this.myTeamData.health) {
+                                    if (this.myTeamData.maxHealth <= this.myTeamData.health) {
                                         updateDoc(myTeamDoc, {
                                             health: increment(points * this.getUser.healAmp),
                                             maxHealth: increment(points * this.getUser.healAmp),
@@ -160,13 +163,17 @@ export default {
                                         })
                                     }
 
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                                 case 2:
                                     updateDoc(myTeamDoc, {
                                         healMultiplier: increment(0.1),
                                     })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                             }
                             break;
@@ -177,13 +184,17 @@ export default {
                                     updateDoc(myTeamDoc, {
                                         dmgBlock: increment(points * this.getUser.blockAmp),
                                     })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                                 case 2:
                                     updateDoc(myTeamDoc, {
                                         blockMultiplier: increment(0.1),
                                     })
-                                    updateDoc(userDoc, { timeStamp: new Date().toISOString() })
+                                    
+                                    newTimeStamp[order - 1] = new Date().toISOString();
+                                    updateDoc(userDoc, { timeStamp: newTimeStamp })
                                     break;
                             }
                             break;

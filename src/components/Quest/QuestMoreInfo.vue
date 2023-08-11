@@ -7,7 +7,7 @@
         <p class="title">
             Quest Details
         </p>
-        <div class="quest-info-container-details">
+        <div class="quest-info-container-details" v-if="quest">
             <p class="title">{{ quest.title }}</p>
             <p class="sub-title">Task: {{ quest.description }}</p>
             <div class="more-info">
@@ -37,6 +37,9 @@
                 <p>{{ quest.role }}</p>
             </div>
         </div>
+        <div class="quest-info-container-details" v-else>
+            <p class="title">Please select a quest first</p>
+        </div>
     </div>
 </template>
 
@@ -51,7 +54,7 @@ export default {
         quest: {
             type: Object,
             required: true,
-            default: {},
+            default: null,
         }
     }
 }
