@@ -22,6 +22,7 @@ export default createStore({
   },
   actions: {
     login({ commit }) {
+      let failed = true;
       commit('setLoading', true)
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider).then(res => {
@@ -390,6 +391,7 @@ export default createStore({
                 "2023-08-09T18:05:35.146Z"
               ],
             }
+            commit('setFailed', false)
             commit('setUser', user)
           }
         })
@@ -502,15 +504,24 @@ export default createStore({
                 nextExp = user.exp - computeLevel[user.level].neededExp;
                 updateDoc(userDoc, { level: nextLevel, exp: nextExp, healAmp: increment(computeLevel[user.level].healAmp), blockAmp: increment(computeLevel[user.level].blockAmp), attackAmp: increment(computeLevel[user.level].attackAmp) })
               }
+              commit('setFailed', false)
               commit('setUser', user)
             }
           })
         }
+        failed = false;
       }).catch(err => {
         console.error(err)
+        failed = true;
         commit('setFailed', true)
-      }).finally(() =>
-        commit('setLoading', false))
+      }).finally(() => {
+        if (failed) {
+          commit('setFailed', true)
+        }else{
+          commit('setFailed', false)
+        }
+        commit('setLoading', false)
+      })
     },
     updateUser({ commit }, user) {
       commit('setUser', user);
