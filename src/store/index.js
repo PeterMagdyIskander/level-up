@@ -19,7 +19,7 @@ export default createStore({
   },
   actions: {
     login({ commit }) {
-      commit('setLoading', false)
+      commit('setLoading', true)
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider).then(res => {
         let shouldLevelUp = false;
@@ -506,7 +506,7 @@ export default createStore({
       }).catch(err => {
         console.error(err)
       }).finally(() =>
-        commit('setLoading', true))
+        commit('setLoading', false))
     },
     updateUser({ commit }, user) {
       commit('setUser', user);
