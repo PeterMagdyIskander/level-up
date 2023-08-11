@@ -311,6 +311,14 @@ export default createStore({
                 role: "HEALER",
                 team: "Dynamis"
               },
+              "kiroloswael2002@gmail.com": {
+                role: "HEALER",
+                team: "Kalos"
+              },
+              "farahwahid79@gmail.com": {
+                role: "DEFENDER",
+                team: "Lumos"
+              },
               "petermagdyiskander@gmail.com": {
                 role: "HEALER",
                 team: "Dynamis"
