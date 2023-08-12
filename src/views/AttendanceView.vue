@@ -23,7 +23,9 @@ export default {
             users: [
             ],
             selectedUser: "",
-            selectedUserName: ""
+            selectedUserName: "",
+            selectedUserObject: {},
+            myTeamData: {}
         }
     },
     computed: {
@@ -45,22 +47,33 @@ export default {
     methods: {
         selectUser(user) {
             this.selectedUser = user;
-            this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name
+            this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name;
+            const firestore = getFirestore();
+            const userCollectionReference = collection(firestore, 'users');
+            const userDoc = doc(userCollectionReference, this.selectedUser);
+            onSnapshot(userDoc, snapshot => {
+                this.selectedUserObject = { ...snapshot.data() };
+                const teamCollectionReference = collection(firestore, 'teams');
+                const myTeam = doc(teamCollectionReference, this.selectedUserObject.teamId)
+                onSnapshot(myTeam, snapshot => {
+                    this.myTeamData = { ...snapshot.data() };
+                })
+            })
+
+
         },
         addAttendance() {
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const userDoc = doc(userCollectionReference, this.selectedUser);
             const teamCollectionReference = collection(firestore, 'teams');
-            const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
+            const myTeamDoc = doc(teamCollectionReference, this.selectedUserObject.teamId)
             updateDoc(userDoc, {
                 gold: increment(10),
                 exp: increment(10),
             })
-            const myTeam = doc(teamCollectionReference, this.getUser.teamId)
-            onSnapshot(myTeam, snapshot => {
-                this.myTeamData = { ...snapshot.data() };
-            })
+
+
             if (this.myTeamData.maxHealth <= this.myTeamData.health + 10) {
                 updateDoc(myTeamDoc, {
                     health: this.myTeamData.health + 10,
