@@ -375,6 +375,10 @@ export default createStore({
                 role: "ADMIN",
                 team: "ADMIN"
               },
+              "nadawahid111@gmail.com": {
+                role: "DEFENDER",
+                team: "Lumos"
+              },
               "samehsamir2017@gmail.com": {
                 role: "ADMIN",
                 team: "ADMIN"
