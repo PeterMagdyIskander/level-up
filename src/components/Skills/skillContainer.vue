@@ -1,6 +1,6 @@
 <template>
     <div class="skill-container" @click="dealPoints" :class="{ 'inactive': !active }">
-        <h6>{{ getUser.role === "ATTACKER" ? "Attack" : getUser.role === "DEFENDER" ? "Defend" : "Heal" }} {{ skillOrder + 1 }}
+        <h6>{{ getUser.role.toUpperCase() === "ATTACKER" ? "Attack" : getUser.role.toUpperCase() === "DEFENDER" ? "Defend" : "Heal" }} {{ skillOrder + 1 }}
         </h6>
     </div>
 </template>

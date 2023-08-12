@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <LoginPage v-if="getUser == null" />
-    <attendance v-else-if="getUser.role === 'ADMIN' && getUser.teamId === 'ADMIN'"></attendance>
+    <attendance v-else-if="getUser.role.toUpperCase() === 'ADMIN' && getUser.teamId === 'ADMIN'"></attendance>
     <home-screen v-else></home-screen>
   </div>
 </template>

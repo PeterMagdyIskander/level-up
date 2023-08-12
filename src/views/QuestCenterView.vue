@@ -22,7 +22,7 @@ export default {
     data() {
         return {
             questList: [],
-            showingRole: "defender"
+            showingRole: ""
         }
     },
     methods: {
@@ -32,6 +32,7 @@ export default {
         }
     },
     created() {
+        this.showingRole=this.getUser.role.toLowerCase();
         this.questList = this.getQuests.filter(quest => quest.role === this.showingRole && !quest.assignedTo.includes(this.getUser.uid))
     }
 }

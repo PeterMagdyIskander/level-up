@@ -35,9 +35,9 @@
         </div>
         <div class="navigation-section">
             <div class="navigation-section-item" @click="navigateTo('/Battlefield')">
-                <img v-if="getUser.role === 'ATTACKER'" src="@/assets/attack-icon.svg" alt="attack-icon">
-                <img v-if="getUser.role === 'DEFENDER'" src="@/assets/defend-icon.svg" alt="defend-icon">
-                <img v-if="getUser.role === 'HEALER'" src="@/assets/heal-icon.svg" alt="heal-icon">
+                <img v-if="getUser.role.toUpperCase() === 'ATTACKER'" src="@/assets/attack-icon.svg" alt="attack-icon">
+                <img v-if="getUser.role.toUpperCase() === 'DEFENDER'" src="@/assets/defend-icon.svg" alt="defend-icon">
+                <img v-if="getUser.role.toUpperCase() === 'HEALER'" src="@/assets/heal-icon.svg" alt="heal-icon">
             </div>
             <div class="navigation-section-item" @click="navigateTo('/QuestCenter')">
                 <img src="@/assets/quest-center-icon.svg" alt="quest-center-icon">

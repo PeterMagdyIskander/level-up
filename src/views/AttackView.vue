@@ -51,7 +51,7 @@ export default {
         }
     },
     created() {
-        this.isAttacker = this.getUser.role === "ATTACKER";
+        this.isAttacker = this.getUser.role.toUpperCase() === "ATTACKER";
         if (this.isAttacker) {
 
             this.selectedTeamId = "";
@@ -73,7 +73,7 @@ export default {
 
     }, methods: {
         handleClick(planetName) {
-            if (this.getUser.role === "ATTACKER") {
+            if (this.getUser.role.toUpperCase() === "ATTACKER") {
                 if (planetName != this.getUser.teamId) {
                     this.selectedTeamId = planetName;
                     const firestore = getFirestore();
@@ -111,7 +111,7 @@ export default {
                 let userTimeStamp = this.getUser.timeStamp[order - 1];
                 let newTimeStamp=this.getUser.timeStamp;
                 if (dateNow >= this.addHours(new Date(userTimeStamp), cooldown)) {
-                    switch (this.getUser.role) {
+                    switch (this.getUser.role.toUpperCase()) {
                         case "ATTACKER":
                             switch (order) {
                                 case 1:
