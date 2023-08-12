@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import { collection, getFirestore, onSnapshot, doc, updateDoc,increment } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, updateDoc, increment } from 'firebase/firestore';
 
 export default {
     name: "attendance-view",
@@ -51,13 +51,29 @@ export default {
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const userDoc = doc(userCollectionReference, this.selectedUser);
+            const teamCollectionReference = collection(firestore, 'teams');
+            const myTeamDoc = doc(teamCollectionReference, this.getUser.teamId)
             updateDoc(userDoc, {
                 gold: increment(10),
                 exp: increment(10),
             })
+            const myTeam = doc(teamCollectionReference, this.getUser.teamId)
+            onSnapshot(myTeam, snapshot => {
+                this.myTeamData = { ...snapshot.data() };
+            })
+            if (this.myTeamData.maxHealth <= this.myTeamData.health + 10) {
+                updateDoc(myTeamDoc, {
+                    health: this.myTeamData.health + 10,
+                    maxHealth: this.myTeamData.health + 10,
+                })
+            } else {
+                updateDoc(myTeamDoc, {
+                    health: increment(10),
+                })
+            }
             alert("Attendance points reflected successfuly!")
-            this.selectUser="";
-            this.selectedUserName="";
+            this.selectUser = "";
+            this.selectedUserName = "";
         }
 
     }
@@ -75,6 +91,7 @@ export default {
     overflow-y: scroll;
     overflow-x: hidden;
     margin-bottom: 30px;
+
     &-item {
         width: 100%;
         padding: 5px;
