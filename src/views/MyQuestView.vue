@@ -33,7 +33,7 @@ export default {
     methods: {
         ...mapActions(['updateUser']),
         submit() {
-            if (this.password.length >= 12) {
+            if (this.password.length >= 12&&this.password[0]==='s'&&this.password[1]==='e'&&this.password[2]==='c') {
                 const firestore = getFirestore();
                 const userCollectionReference = collection(firestore, 'users');
                 const userDoc = doc(userCollectionReference, this.getUser.uid)
