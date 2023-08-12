@@ -51,6 +51,10 @@ export default createStore({
                 role: "Attacker",
                 team: "Dynamis"
               },
+              "mondamoatasem1@gmail.com": {
+                role: "HEALER",
+                team: "Dynamis"
+              },
               "andrewhany718@gmail.com": {
                 role: "Attacker",
                 team: "Dynamis"
