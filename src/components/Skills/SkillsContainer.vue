@@ -16,7 +16,28 @@ export default {
     },
     data() {
         return {
-            skills: [
+            attackerSkills: [
+                {
+
+                    name: "Skill 1",
+                    points: 20,
+                    neededLevel: 1,
+                    cooldown:1
+                },
+                {
+                    name: "Skill 2",
+                    points: 10,
+                    neededLevel: 3,
+                    cooldown:2
+                },
+                {
+                    name: "Skill 3",
+                    points: 100,
+                    neededLevel: 10,
+                    cooldown:5
+                },
+            ],
+            otherSkills: [
                 {
 
                     name: "Skill 1",
@@ -41,6 +62,12 @@ export default {
     },
     computed: {
         ...mapGetters(['getUser']),
+        skills(){
+            if(this.getUser.role.toUpperCase()==="ATTACKER")
+                return this.attackerSkills
+            else
+                return this.otherSkills
+        }
     },
     methods: {
         dealPoints(points,cooldown,order) {

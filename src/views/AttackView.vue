@@ -152,10 +152,10 @@ export default {
                             switch (order) {
                                 case 1:
                                 case 3:
-                                    if (this.myTeamData.maxHealth <= this.myTeamData.health) {
+                                    if (this.myTeamData.maxHealth <= this.myTeamData.health+(points * this.getUser.healAmp)) {
                                         updateDoc(myTeamDoc, {
-                                            health: increment(points * this.getUser.healAmp),
-                                            maxHealth: increment(points * this.getUser.healAmp),
+                                            health: this.myTeamData.health+(points * this.getUser.healAmp),
+                                            maxHealth: this.myTeamData.health+(points * this.getUser.healAmp),
                                         })
                                     } else {
                                         updateDoc(myTeamDoc, {
