@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="attendance-container">
         <input type="text" v-model="searchText">
         <div v-if="users.length" class="drop-down">
             <div class="drop-down-item" v-for="user in searchUsers" :key="user.id" @click="selectUser(user.id)">
@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import { collection, getFirestore, onSnapshot, doc, updateDoc } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, updateDoc,increment } from 'firebase/firestore';
 
 export default {
     name: "attendance-view",
@@ -48,16 +48,16 @@ export default {
             this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name
         },
         addAttendance() {
-            //do points for attendance
-
-
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
             const userDoc = doc(userCollectionReference, this.selectedUser);
             updateDoc(userDoc, {
+                gold: increment(10),
                 exp: increment(10),
-                dmgBlock: increment(10),
             })
+            alert("Attendance points reflected successfuly!")
+            this.selectUser="";
+            this.selectedUserName="";
         }
 
     }
@@ -65,14 +65,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div {
+.attendance-container {
     text-align: center;
     padding: 50px;
 }
 
 .drop-down {
     height: 300px;
-
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-bottom: 30px;
     &-item {
         width: 100%;
         padding: 5px;
