@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-import { collection, getFirestore, onSnapshot } from 'firebase/firestore';
+import { collection, getFirestore, onSnapshot, doc, updateDoc } from 'firebase/firestore';
 
 export default {
     name: "attendance-view",
@@ -49,6 +49,15 @@ export default {
         },
         addAttendance() {
             //do points for attendance
+
+
+            const firestore = getFirestore();
+            const userCollectionReference = collection(firestore, 'users');
+            const userDoc = doc(userCollectionReference, this.selectedUser);
+            updateDoc(userDoc, {
+                exp: increment(10),
+                dmgBlock: increment(10),
+            })
         }
 
     }
@@ -63,7 +72,7 @@ div {
 
 .drop-down {
     height: 300px;
-    
+
     &-item {
         width: 100%;
         padding: 5px;
