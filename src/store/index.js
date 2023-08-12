@@ -323,6 +323,10 @@ export default createStore({
                 role: "DEFENDER",
                 team: "Dynamis"
               },
+              "danny2203584@miuegypt.edu.eg": {
+                role: "ATTACKER",
+                team: "Dynamis"
+              },
               "petermagdyiskander@gmail.com": {
                 role: "HEALER",
                 team: "Dynamis"
