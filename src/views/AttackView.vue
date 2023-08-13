@@ -152,14 +152,14 @@ export default {
                             switch (order) {
                                 case 1:
                                 case 3:
-                                    if (this.myTeamData.maxHealth <= this.myTeamData.health+(points * this.getUser.healAmp)) {
+                                    if (this.myTeamData.maxHealth <= this.myTeamData.health+(points * this.getUser.healAmp* this.myTeamData.healMultiplier)) {
                                         updateDoc(myTeamDoc, {
-                                            health: this.myTeamData.health+(points * this.getUser.healAmp),
-                                            maxHealth: this.myTeamData.health+(points * this.getUser.healAmp),
+                                            health: this.myTeamData.health+(points * this.getUser.healAmp* this.myTeamData.healMultiplier),
+                                            maxHealth: this.myTeamData.health+(points * this.getUser.healAmp* this.myTeamData.healMultiplier),
                                         })
                                     } else {
                                         updateDoc(myTeamDoc, {
-                                            health: increment(points * this.getUser.healAmp),
+                                            health: increment(points * this.getUser.healAmp* this.myTeamData.healMultiplier),
                                         })
                                     }
 
@@ -182,7 +182,7 @@ export default {
                                 case 1:
                                 case 3:
                                     updateDoc(myTeamDoc, {
-                                        dmgBlock: increment(points * this.getUser.blockAmp),
+                                        dmgBlock: increment(points * this.getUser.blockAmp* this.myTeamData.blockMultiplier),
                                     })
                                     
                                     newTimeStamp[order - 1] = new Date().toISOString();
