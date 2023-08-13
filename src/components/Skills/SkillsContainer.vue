@@ -33,7 +33,7 @@ export default {
                 {
                     name: "Skill 3",
                     points: 100,
-                    neededLevel: 10,
+                    neededLevel: 9,
                     cooldown:5
                 },
             ],
@@ -54,7 +54,7 @@ export default {
                 {
                     name: "Skill 3",
                     points: 50,
-                    neededLevel: 10,
+                    neededLevel: 9,
                     cooldown:5
                 },
             ],
