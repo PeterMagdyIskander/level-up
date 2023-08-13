@@ -31,7 +31,7 @@
                     :style="{ width: (myTeamData.health / myTeamData.maxHealth) * 100 + '%' }">
                 </div>
             </div>
-            <h3>{{ myTeamData.health + " / " + myTeamData.maxHealth }}</h3>
+            <h3>{{ Math.ceil(myTeamData.health) + " / " + myTeamData.maxHealth }}</h3>
         </div>
         <div class="navigation-section">
             <div class="navigation-section-item" @click="navigateTo('/Battlefield')">
