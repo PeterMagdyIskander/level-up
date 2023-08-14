@@ -33,14 +33,22 @@ export default {
     methods: {
         ...mapActions(['updateUser']),
         submit() {
-            if (this.password.length >= 12&&this.password[0]==='s'&&this.password[1]==='e'&&this.password[2]==='c') {
+            if (this.password.length >= 12 && this.password[0] === 's' && this.password[1] === 'e' && this.password[2] === 'c') {
                 const firestore = getFirestore();
                 const userCollectionReference = collection(firestore, 'users');
+                const teamCollectionReference = collection(firestore, 'teams');
+                const teamDoc = doc(teamCollectionReference, this.getUser.teamId);
                 const userDoc = doc(userCollectionReference, this.getUser.uid)
                 if (this.getUser.role.toLowerCase() === this.quest.role.toLowerCase()) {
                     updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp), gold: increment(this.quest.gold) })
+                    updateDoc(teamDoc, {
+                        gold: increment(this.quest.gold),
+                    })
                 } else {
                     updateDoc(userDoc, { assignedQuestId: "", exp: increment(this.quest.exp / 2), gold: increment(this.quest.gold / 2) })
+                    updateDoc(teamDoc, {
+                        gold: increment(this.quest.gold / 2),
+                    })
                 }
                 let updatedUser = this.getUser;
                 updatedUser.assignedQuestId = "";

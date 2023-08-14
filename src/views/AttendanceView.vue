@@ -10,6 +10,8 @@
         <div class="drop-down-item">
             {{ selectedUserName }}
         </div>
+        <button @click="calculateGold">Calculate Teams' GOLD</button>
+
     </div>
 </template>
 <script>
@@ -45,6 +47,39 @@ export default {
         })
     },
     methods: {
+        calculateGold() {
+            let teamsGold = {
+                Dynamis: 0,
+                Kalos: 0,
+                Lumos: 0,
+                Astro: 0,
+            }
+            const firestore = getFirestore();
+            const teamCollectionReference = collection(firestore, 'teams');
+            this.users.forEach(user => {
+                console.log(user)
+                if (user.teamId != "ADMIN") {
+                    teamsGold[user.teamId] += user.gold;
+                }
+            })
+
+            const AstroDoc = doc(teamCollectionReference, 'Astro');
+            updateDoc(AstroDoc, {
+                gold: teamsGold['Astro'],
+            })
+            const DynamisDoc = doc(teamCollectionReference, 'Dynamis');
+            updateDoc(DynamisDoc, {
+                gold: teamsGold['Dynamis'],
+            })
+            const KalosDoc = doc(teamCollectionReference, 'Kalos');
+            updateDoc(KalosDoc, {
+                gold: teamsGold['Kalos'],
+            })
+            const LumosDoc = doc(teamCollectionReference, 'Lumos');
+            updateDoc(LumosDoc, {
+                gold: teamsGold['Lumos'],
+            })
+        },
         selectUser(user) {
             this.selectedUser = user;
             this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name;

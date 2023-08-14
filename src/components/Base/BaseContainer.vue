@@ -13,6 +13,7 @@
             </div>
             <p>{{ Math.ceil(myTeamData.health) + " / " + myTeamData.maxHealth }}</p>
             <p><span>✋</span> {{ Math.ceil(myTeamData.dmgBlock) }}</p>
+            <p><span>💰</span> {{ Math.ceil(myTeamData.gold) }}</p>
         </div>
     </div>
 </template>
