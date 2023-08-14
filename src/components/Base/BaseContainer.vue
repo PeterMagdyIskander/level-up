@@ -11,10 +11,9 @@
                     :style="{ width: (myTeamData.health / myTeamData.maxHealth) * 100 + '%' }">
                 </div>
             </div>
-            <p>{{ Math.ceil(myTeamData.health) + " / " + myTeamData.maxHealth }}</p>
+            <p>{{ Math.ceil(myTeamData.health) + " / " + Math.ceil(myTeamData.maxHealth) }}</p>
             <p><span>✋</span> {{ Math.ceil(myTeamData.dmgBlock) }}</p>
-            <p><span>💰</span> {{ Math.ceil(myTeamData.gold) }}</p>
-        </div>
+             </div>
     </div>
 </template>
 

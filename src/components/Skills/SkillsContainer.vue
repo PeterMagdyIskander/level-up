@@ -20,9 +20,9 @@ export default {
                 {
 
                     name: "Skill 1",
-                    points: 20,
+                    points: 50,
                     neededLevel: 1,
-                    cooldown:1
+                    cooldown:2
                 },
                 {
                     name: "Skill 2",
