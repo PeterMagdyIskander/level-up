@@ -17,3 +17,11 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### To run using docker
+
+1- docker build -t levelup:1.0 .
+
+2- docker run -p 5000:8080 (image hash)
+
+3- go to localhost:5000
