@@ -25,3 +25,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 2- docker run -p 5000:8080 (image hash)
 
 3- go to localhost:5000
+
+### To run using docker-compose
+
+1- docker-compose build
+
+2- docker-compose up
