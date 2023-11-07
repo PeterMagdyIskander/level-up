@@ -2,13 +2,15 @@ FROM node:lts-alpine
 
 RUN npm install -g http-server
 
+RUN mkdir /app
+
 WORKDIR /app
 
 COPY package*.json ./
 
 RUN npm install
 
-COPY . .
+ADD . /app/
 
 EXPOSE 8080
-CMD [ "npm", "run", "serve" ]
+CMD [ "npm", "run", "serve","--","--public", "0.0.0.0:8080" ]
