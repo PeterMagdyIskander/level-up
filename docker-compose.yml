@@ -8,7 +8,4 @@ services:
       - "8080:8080"  # Map the container's port to the host machine (change if needed)
     volumes:
       - ./src:/app/src  # Mount your Vue app source code
-    environment:
-      - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=true
     command: npm run serve
