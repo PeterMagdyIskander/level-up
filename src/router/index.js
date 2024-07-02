@@ -23,7 +23,7 @@ const routes = [
     component: () => import('../views/AttackView.vue')
   },
   {
-    path: '/Attendance',
+    path: '/Attendance/:uid',
     name: 'Attendance',
     component: () => import('../views/AttendanceView.vue')
   },

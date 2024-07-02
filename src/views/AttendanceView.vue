@@ -1,85 +1,30 @@
 <template>
     <div class="attendance-container">
-        <input type="text" v-model="searchText">
-        <div v-if="users.length" class="drop-down">
-            <div class="drop-down-item" v-for="user in searchUsers" :key="user.id" @click="selectUser(user.id)">
-                {{ user.name }}
-            </div>
-        </div>
-        <button @click="addAttendance">Add Attendance</button>
-        <div class="drop-down-item">
-            {{ selectedUserName }}
-        </div>
-        <button @click="calculateGold">Calculate Teams' GOLD</button>
-
+        ADDING ATTENDANCE
     </div>
 </template>
 <script>
 import { collection, getFirestore, onSnapshot, doc, updateDoc, increment } from 'firebase/firestore';
 
+import { mapActions, mapGetters } from 'vuex';
 export default {
     name: "attendance-view",
     data() {
         return {
-            searchText: "",
-            users: [
-            ],
-            selectedUser: "",
-            selectedUserName: "",
-            selectedUserObject: {},
-            myTeamData: {}
+
         }
     },
-    computed: {
-        searchUsers() {
-            if (this.searchText === "") {
-                return this.users
-            }
-            let searchResult = this.users.filter(user => user.name.toLowerCase().includes(this.searchText.toLowerCase()));
-            return searchResult
-        },
-    },
-    created() {
-        const firestore = getFirestore();
-        const usersCollectionReference = collection(firestore, 'users');
-        onSnapshot(usersCollectionReference, snapshot => {
-            this.users = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-        })
+    computed: mapGetters(['getUser', 'getQuests', 'getLoading', 'getFailed', mapActions]),
+    mounted() {
+
+        if (this.getUser !== null && this.getUser.role === "ADMIN")
+            this.addAttendance(this.$route.params.uid)
+        else
+            console.error("Das")
+
     },
     methods: {
-        calculateGold() {
-            let teamsGold = {
-                Dynamis: 0,
-                Kalos: 0,
-                Lumos: 0,
-                Astro: 0,
-            }
-            const firestore = getFirestore();
-            const teamCollectionReference = collection(firestore, 'teams');
-            this.users.forEach(user => {
-                console.log(user)
-                if (user.teamId != "ADMIN") {
-                    teamsGold[user.teamId] += user.gold;
-                }
-            })
-
-            const AstroDoc = doc(teamCollectionReference, 'Astro');
-            updateDoc(AstroDoc, {
-                gold: teamsGold['Astro'],
-            })
-            const DynamisDoc = doc(teamCollectionReference, 'Dynamis');
-            updateDoc(DynamisDoc, {
-                gold: teamsGold['Dynamis'],
-            })
-            const KalosDoc = doc(teamCollectionReference, 'Kalos');
-            updateDoc(KalosDoc, {
-                gold: teamsGold['Kalos'],
-            })
-            const LumosDoc = doc(teamCollectionReference, 'Lumos');
-            updateDoc(LumosDoc, {
-                gold: teamsGold['Lumos'],
-            })
-        },
+        ...mapActions(['login', 'setQuests']),
         selectUser(user) {
             this.selectedUser = user;
             this.selectedUserName = this.users.filter(user => user.id === this.selectedUser)[0].name;
@@ -97,31 +42,14 @@ export default {
 
 
         },
-        addAttendance() {
+        addAttendance(uid) {
             const firestore = getFirestore();
             const userCollectionReference = collection(firestore, 'users');
-            const userDoc = doc(userCollectionReference, this.selectedUser);
-            const teamCollectionReference = collection(firestore, 'teams');
-            const myTeamDoc = doc(teamCollectionReference, this.selectedUserObject.teamId)
+            const userDoc = doc(userCollectionReference, uid);
             updateDoc(userDoc, {
-                gold: increment(10),
-                exp: increment(10),
+                humanityPoints: increment(25),
             })
-
-
-            if (this.myTeamData.maxHealth <= this.myTeamData.health + 10) {
-                updateDoc(myTeamDoc, {
-                    health: this.myTeamData.health + 10,
-                    maxHealth: this.myTeamData.health + 10,
-                })
-            } else {
-                updateDoc(myTeamDoc, {
-                    health: increment(10),
-                })
-            }
             alert("Attendance points reflected successfuly!")
-            this.selectUser = "";
-            this.selectedUserName = "";
         }
 
     }

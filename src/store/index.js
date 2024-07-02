@@ -39,6 +39,10 @@ export default createStore({
           if (!allUsers.includes(res.user.uid)) {
             newUser = true;
             let userDB = {
+              "mostafaosama030@gmail.com": {
+                role: "ADMIN",
+                team: "ADMIN",
+              },
               "evan20012@gmail.com": {
                 role: "Attacker",
                 team: "Dynamis"

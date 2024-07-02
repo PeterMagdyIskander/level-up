@@ -15,7 +15,7 @@ export default {
     name: "LoginPage",
     computed: mapGetters(['getUser', 'getQuests', 'getLoading', 'getFailed', mapActions]),
     mounted() {
-        const url = `http://localhost:8080/attendance/${this.getUser.uid}`;
+        const url = `http://192.168.255.48:8080/attendance/${this.getUser.uid}`;
         const qrCodeContainer = document.getElementById('qrcode');
 
         QRCode.toCanvas(url, { errorCorrectionLevel: 'H' }, function (error, canvas) {
