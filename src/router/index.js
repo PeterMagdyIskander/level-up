@@ -37,7 +37,11 @@ const routes = [
     name: 'TeamRoles',
     component: () => import('../views/RolesView.vue')
   },
-
+  {
+    path:'/QRCode',
+    name:'QRCode',
+    component: () => import('../views/QRCodeView.vue')
+  }
 
 ]
 
